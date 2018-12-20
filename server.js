@@ -40,39 +40,411 @@ app.use(express.static(__dirname + "/public"));
 
 // Home page
 app.get("/", (req, res) => {
+// knex querie3 to db to return menu items and render them on homepage
+  knex
+    .select("*")
+    .from("foods")
+    .then((results) => {
+      const menu = results;
 
-    knex
-      .select("*")
-      .from("foods")
-      .then((results) => {
-        const menu = results;
+      console.log("this is the menu from knex query: ", menu);
 
-        console.log("this is the menu from knex query: ", menu);
+      const templateVars = {
+        menu: menu
+      };
+
+      return templateVars;
+
+    })
+    .then((template) =>{
+      res.render("index", template);
+    })
+    .catch((err)=>{
+      console.log("we have an error: ", err)
+    })
+
+});
+
+//route to get to order confirm page where order id displayed as id in url
+app.get("/order/:id", (req,res) =>{
+
+  const NewOrderId = req.params.id;
+
+  knex // write query that gets the join table TODO !!!
+    .select("*")
+    .from("orders")
+    .where(orderid = NewOrderId)
+    .then((results) => {
+        const clientOrder = results;
+
+        console.log("this is the clientOrder from knex query: ", clientOrder); //check to see whats actually being returned by query
 
         const templateVars = {
-          menu: menu
+          order : clientOrder
+        };
+
+
+        return templateVars;
+    })
+    .then((template) =>{
+      res.render("order_id", template);
+    })
+    .catch((err)=>{
+      console.log("we have an error: ",err);
+    })
+
+})
+
+//route to get the confirmation page where message saying order has been placed will appear
+app.get("/order/:id/confirm", (req,res)=>{
+  res.render("order_confirm");
+})
+
+
+
+//restaurant-side GETS
+
+//route to get to restaurant login page (where redirected to if trying to access other page without logging in) STRETCH
+
+app.get("/restaurant", (req,res)=>{
+  res.render("restaurant");
+})
+
+//route to get to page where restaruant will view the orders being palced
+app.get("/restaurant/summary", (req,res)=>{
+
+    knex // write query that gets the join table so orders can be seen by restaurant TODO !!!
+    .select("*")
+    .from("orders")
+    .where(orderid = NewOrderId)
+    .then((results) => {
+        const clientOrder = results;
+
+        console.log("this is the clientOrder from knex query that the restuaruant will see: ", clientOrder); //check to see whats actually being returned by query
+
+        const templateVars = {
+          order : clientOrder
         };
 
         return templateVars;
+    })
+    .then((template) =>{
+      res.render("restaurant_summary", template);
+    })
+    .catch((err)=>{
+      console.log("we have an error: ",err);
+    })
 
-      })
-      .then((template) =>{
-        res.render("index", template);
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
-      // .finally(() => {
-      //        knex.destroy();
-      //     })
+})
 
-  // res.render("index", templateVars);
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
-
-
-
+// stanleys stuff from here on out
