@@ -33,7 +33,7 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 // Mount all resource routes
 // app.use("/api/users", usersRoutes(knex));

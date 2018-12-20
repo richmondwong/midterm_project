@@ -11,7 +11,53 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
 
-  <body>
+    <body>
+
+      <div id="purchase_box">
+
+      <div>
+        <div>
+          <img src="images/burger.jpg">
+        </div>
+        <div>
+        <h3>Item 1</h3>
+        </div>
+      </div>
+      <div>
+        <div>
+          <img src="">
+        </div>
+        <h3>Item 2</h3>
+      </div>
+      <div>
+        <div>
+          <img src="">
+        </div>
+        <h3>Item 3</h3>
+      </div>
+
+      </div>
+
+      <br>
+      <br>
+
+      <div id="input_details_box">
+        <form action="/order" method="POST">
+          <!--- Insert values taken from purchase_box -->
+          Your Name <input type="text" name="customer_name" value="Your Name"><br>
+          Phone Number <input type="text" name="phone_number" value="Input phone #"><br>
+          <input type="submit" value="Submit">
+        </form>
+
+      </div>
+
+      <br>
+      <br>
+
+      <div id="basket_confirmation_box">
+      <button>Confirm Order</button>
+      </div>
+
     <h1> is this working</h1>
     <h2> restaurant Menu </h2>
 
@@ -22,6 +68,9 @@
        <% } %>
 
     </div>
+
+
+
 
   </body>
 </html>
