@@ -8,9 +8,9 @@ module.exports = (knex) => {
   //route to get to restaurant login page (where redirected to if trying to access other page without logging in) STRETCH
   //RENDER Restaurant login page
   router.get("/", (req,res)=>{
-    //res.render("restaurant");
-    res.send("sent to restaurant 'login' page - ejs not ready yet.")
-  })
+    res.render("restaurant");
+    //res.send("sent to restaurant 'login' page - ejs not ready yet.")
+  });
 
   //RENDER order summary page for restaurant
   router.get("/summary", (req,res)=>{
@@ -36,8 +36,15 @@ module.exports = (knex) => {
       .catch((err)=>{
         console.log("we have an error: ",err);
       })
+  });
 
-  })
+  router.post("/", (req, res) => {
+    try{
+      res.redirect("/restaurant/summary");
+    } catch (err) {
+      console.log("Error @Post restaurant login:", err);
+    }
+  });
 
  return router;
 }
