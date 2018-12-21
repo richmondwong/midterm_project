@@ -7,6 +7,7 @@ const ENV         = process.env.ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
+const cookieParser = require('cookie-parser')
 const app         = express();
 
 const knexConfig  = require("./knexfile");
@@ -15,7 +16,8 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
+const orderRoutes       = require("./routes/order");
+const restaurantRoutes  = require("./routes/restaurant");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -33,16 +35,45 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
+// app.use(express.static(__dirname + "/styles"));
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+app.use("/order", orderRoutes(knex));
+app.use("/restaurant", restaurantRoutes(knex));
+
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+// knex querie3 to db to return menu items and render them on homepage
+  knex
+    .select("*")
+    .from("foods")
+    .then((results) => {
+      const menu = results;
+
+      console.log("this is the menu from knex query: ", menu);
+
+      const templateVars = {
+        menu: menu
+      };
+
+      return templateVars;
+
+    })
+    .then((template) =>{
+      res.render("index", template);
+    })
+    .catch((err)=>{
+      console.log("Error @GET / : ", err)
+    })
+
 });
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
