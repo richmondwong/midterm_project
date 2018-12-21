@@ -6,7 +6,7 @@
 
 .summary_text {
   font-size: 50px;
-  border: solid;
+  /*border: solid;*/
 }
 
 .jumbotron {
@@ -18,16 +18,18 @@
   display: flex;
   flex-direction: column;
   border: solid;
-  border-color: red;
+/*  border-color: red;*/
 }
 
 .main_container {
-  border: solid;
+/*  border: solid;*/
 }
 
 .jumbo_individual_container {
-  border: solid;
-  border-color: green;
+ /* border: solid;*/
+/*  border-color: green;*/
   display: flex;
   justify-content: center;
 }
+
+
