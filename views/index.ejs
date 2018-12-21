@@ -192,6 +192,7 @@
   </div>
 
 
+
   <p>
 <a href="#" class = "btn btn-default btn-lg" role="button">More info</a>
 <button type="submit" class = "btn btn-danger" role = "button">Button</button>
@@ -201,11 +202,50 @@
 <button type="submit" class = "btn btn-warning btn-lg">Warning</button>
 <button type="submit" class = "btn btn-link btn-lg">Link</button>
 
+      <br>
+      <br>
+    <h1> is this working</h1>
+    <h2> restaurant Menu </h2>
+
+    <br>
+
+     <div class = "food_object">
+
+      <% for (foodItem of menu) {%>
+          <li> <%= foodItem.foodid %> </li>
+          <li> <%= foodItem.name %> </li>
+          <li> <%= foodItem.price %> </li>
+          <li><button class="add_to_cart" type="button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>"> PLUS </button></li>
+           <li><button class="minus_from_cart" type="button" data-food-id="<%= foodItem.foodid %>" > MINUS </button></li>
+
+
+
+       <% } %>
+
+    </div>
+
+    <br>
+    <br>
+
+    <div id="basket">
+ <p> this is the interactive food cart</p>
+      <div id="food_cart">
+
+
+
+
+
+      </div>
+
+       <button>Confirm Order</button>
+
+
 <div class="btn-group btn-group-lg" role="group" aria-label="...">
   <button type="button" class="btn btn-default">Small</button>
   <button type="button" class="btn btn-default">Medium</button>
   <button type="button" class="btn btn-default">Large</button>
 </div>
+
 
 </p>
 
@@ -231,6 +271,19 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+        <button>Confirm Order</button>
+
+      <div id="basket_confirmation_box">
+        <form action="/confirm" method="POST">
+      <button>Confirm Order</button>
+
+      </div>
+    </div>
+
+      <br>
+      <br>
+
 
 </body>
 
