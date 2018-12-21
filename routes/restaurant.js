@@ -31,7 +31,8 @@ module.exports = (knex) => {
       })
       .then((template) =>{
         //res.render("restaurant_summary", template);
-        res.send("sent to restaurant summary page - ejs not ready yet");
+        // res.send("sent to restaurant summary page - ejs not ready yet");
+        res.render('restaurant_summary');
       })
       .catch((err)=>{
         console.log("we have an error: ",err);
