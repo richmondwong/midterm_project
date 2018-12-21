@@ -19,13 +19,16 @@ function renderBasket(basket){
 
 }
 
-function deleteFromBasket(id)
+function deleteFromBasket(id){
+
+}
+
   $(".add_to_cart").on("click", function(){
 
      let foodName = $(this).data('food-name');
      let foodPrice = $(this).data('food-price');
      let foodId = $(this).data('food-id')
-    // console.log(yop);
+
 
     if (foodId in basket){
         basket[foodId].quantity += 1;
@@ -37,7 +40,30 @@ function deleteFromBasket(id)
         }
     }
 
-    renderBasket(basket);
+    console.log(basket);
+
+
+  });
+
+   $(".minus_from_cart").on("click", function(){
+
+     // let foodName = $(this).data('food-name');
+     // let foodPrice = $(this).data('food-price');
+     let foodId = $(this).data('food-id');
+
+
+    if( !basket[foodId]){
+      console.log("please add to cart first")
+    } else {
+      if (basket[foodId].quantity === 1){
+       delete basket[foodId];
+       console.log("deleting item from basket")
+     } else {
+       basket[foodId].quantity -= 1;
+       console.log("minus 1!")
+     }
+    }
+    console.log(basket);
 
 
   });

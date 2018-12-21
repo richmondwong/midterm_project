@@ -51,7 +51,10 @@
           <li> <%= foodItem.foodid %> </li>
           <li> <%= foodItem.name %> </li>
           <li> <%= foodItem.price %> </li>
-          <li><button class="add_to_cart" type="button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>"> Add to Cart</button></li>
+          <li><button class="add_to_cart" type="button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>"> PLUS </button></li>
+           <li><button class="minus_from_cart" type="button" data-food-id="<%= foodItem.foodid %>" > MINUS </button></li>
+
+
 
        <% } %>
 
