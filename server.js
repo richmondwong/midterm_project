@@ -67,9 +67,10 @@ app.get("/", (req, res) => {
 });
 
 //route to get the confirmation page where message saying order has been placed will appear
-app.get("/order/confirm", (req,res)=>{
+app.get("/order/final", (req,res)=>{
   try {
-    res.render("order_confirm");
+    //res.render("order_confirm");
+    res.send("sent to order final page - ejs not ready");
   } catch (err){
     console.log("Error @GET order/final:", err);
   }
@@ -77,32 +78,31 @@ app.get("/order/confirm", (req,res)=>{
 })
 
 //route to get to order confirm page where order id displayed as id in url
-app.get("/order/:id", (req,res) =>{
+app.get("/order/confirm", (req,res) =>{
 
-  const NewOrderId = req.params.id;
+  // knex // write query that gets the join table TODO !!!
+  //   .select('*')
+  //   .from('orders')
+  //   .where('orderid', '=', NewOrderId)
+  //   .then((results) => {
+  //       const clientOrder = results;
 
-  knex // write query that gets the join table TODO !!!
-    .select('*')
-    .from('orders')
-    .where('orderid', '=', NewOrderId)
-    .then((results) => {
-        const clientOrder = results;
+  //       console.log("this is the clientOrder from knex query: ", clientOrder); //check to see whats actually being returned by query
 
-        console.log("this is the clientOrder from knex query: ", clientOrder); //check to see whats actually being returned by query
-
-        const templateVars = {
-          order : clientOrder
-        };
+  //       const templateVars = {
+  //         order : clientOrder
+  //       };
 
 
-        return templateVars;
-    })
-    .then((template) =>{
-      res.render("order_id", template);
-    })
-    .catch((err)=>{
-      console.log("Error @GET order/confirm: ",err);
-    })
+  //       return templateVars;
+    // })
+    // .then((template) =>{
+      //res.render("order_id", template);
+      res.send("sent to order confirmation page - EJS not ready yet");
+    // })
+    // .catch((err)=>{
+    //   console.log("Error @GET order/confirm: ",err);
+    // })
 
 })
 
@@ -112,7 +112,8 @@ app.get("/order/:id", (req,res) =>{
 //route to get to restaurant login page (where redirected to if trying to access other page without logging in) STRETCH
 
 app.get("/restaurant", (req,res)=>{
-  res.render("restaurant");
+  //res.render("restaurant");
+  res.send("sent to restaurant 'login' page - ejs not ready yet.")
 })
 
 //route to get to page where restaruant will view the orders being palced
@@ -120,8 +121,7 @@ app.get("/restaurant/summary", (req,res)=>{
 
     knex // write query that gets the join table so orders can be seen by restaurant TODO !!!
     .select("*")
-    .from("orders")
-    .where(orderid = NewOrderId)
+    .from('orders')
     .then((results) => {
         const clientOrder = results;
 
@@ -134,7 +134,8 @@ app.get("/restaurant/summary", (req,res)=>{
         return templateVars;
     })
     .then((template) =>{
-      res.render("restaurant_summary", template);
+      //res.render("restaurant_summary", template);
+      res.send("sent to restaurant summary page - ejs not ready yet");
     })
     .catch((err)=>{
       console.log("we have an error: ",err);
@@ -149,17 +150,6 @@ app.get("/restaurant/summary", (req,res)=>{
 app.post("/order", (req, res) => {
   try {
     //get order data.
-    //let totalFoods = knex.select().from('foods').length;
-    //***implement filter to remove food items with 0 quantity.
-    // let cookieObject =  { food1 : req.body.food1,
-    //                       food2 : req.body.food2,
-    //                       food3 : req.body.food3,
-    //                       food4 : req.body.food4,
-    //                       food5 : req.body.food5,
-    //                       food6 : req.body.food6,
-    //                       name : req.body.clientName,
-    //                       phone : req.body.phone
-    //                     };
 
     let cookieData = {
       food1: {id: req.body.f1id, quntity: req.body.f1q},
@@ -223,6 +213,8 @@ app.post("/order/confirm", (req, res) => {
                                       foodid: orderObj[food3][id],
                                       food_quantity: orderObj[food3][f3q]});
       })
+
+      res.send("confirmation complete - to redirect to final page");
   } catch (err) {
     console.log("Error @POST /order/confirm:", err);
   }
