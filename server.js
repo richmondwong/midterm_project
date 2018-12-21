@@ -450,46 +450,46 @@ app.listen(PORT, () => {
 
 // stanleys stuff from here on out
 
-//Grab order data and input to DB
-app.post("/order", (req, res) => {
-  //get order data.
-  //let totalFoods = knex.select().from('foods').length;
-  //***implement filter to remove food items with 0 quantity.
-  let cookieObject =  { food1 : req.body.food1,
-                        food2 : req.body.food2,
-                        food3 : req.body.food3,
-                        food4 : req.body.food4,
-                        food5 : req.body.food5,
-                        food6 : req.body.food6,
-                        name : req.body.clientName,
-                        phone : req.body.phone
-                      };
+// //Grab order data and input to DB
+// app.post("/order", (req, res) => {
+//   //get order data.
+//   //let totalFoods = knex.select().from('foods').length;
+//   //***implement filter to remove food items with 0 quantity.
+//   let cookieObject =  { food1 : req.body.food1,
+//                         food2 : req.body.food2,
+//                         food3 : req.body.food3,
+//                         food4 : req.body.food4,
+//                         food5 : req.body.food5,
+//                         food6 : req.body.food6,
+//                         name : req.body.clientName,
+//                         phone : req.body.phone
+//                       };
 
-  //send cookie with order data.
-  res.cookie("basket", cookieObject, { expires: new Date(Date.now() + 900000)});
+//   //send cookie with order data.
+//   res.cookie("basket", cookieObject, { expires: new Date(Date.now() + 900000)});
 
-  //redirect to comfirmation page.
-  res.redirect("/order/confirm");
-});
+//   //redirect to comfirmation page.
+//   res.redirect("/order/confirm");
+// });
 
-//Grab data from the cookie, input to db, redirect
-app.post("/order/confirm", (req, res) => {
-  //grab data from cookie.
-  let orderObj = req.cookies.basket;
+// //Grab data from the cookie, input to db, redirect
+// app.post("/order/confirm", (req, res) => {
+//   //grab data from cookie.
+//   let orderObj = req.cookies.basket;
 
-  //input the data to the db
-  let newClient = [{
-    name: orderObj.name,
-    phone_number: orderObj.phone
-  }];
-  let clientId;
+//   //input the data to the db
+//   let newClient = [{
+//     name: orderObj.name,
+//     phone_number: orderObj.phone
+//   }];
+//   let clientId;
 
-  knex.("clients").insert(newClient)
-    .then( () => {
-      clientId = knex('clients').select(clientid).orderBy('clientid', 'desc');
-    })
-    .then( () => {
-      knex.('')
-    })
+//   knex.("clients").insert(newClient)
+//     .then( () => {
+//       clientId = knex('clients').select(clientid).orderBy('clientid', 'desc');
+//     })
+//     .then( () => {
+//       knex.('')
+//     })
 
-});
+// });
