@@ -61,7 +61,7 @@ function renderBasket(basket){
   }
 
   let total= calculateTotalPrice(basket);
-  $("#food_cart").prepend(total)
+  $("#food_cart").append(total)
 }
 
 // function deleteFromBasket(id){
