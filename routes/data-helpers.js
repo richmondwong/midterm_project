@@ -10,22 +10,21 @@ const knex = require('knex')({
 });
 
 // Defines helper functions
-module.exports = function makeDataHelpers() {
-  return {
 
-    // Get all tweets in `db`, sorted by newest first
-    getFoods: function(callback) {
-      knex.select().from('foods')
-       .then((rows) => {
-          console.log(rows);
-          callback(null, rows);
-       })
-       .finally(() => {
-              knex.destroy();
-          })
-      ;
-    }
-
-
-  };
+// Get all tweets in `db`, sorted by newest first
+function getFoods() {
+  knex.select().from('foods')
+   .then((rows) => {
+      console.log(rows);
+      return(rows);
+   })
+   .finally(() => {
+          knex.destroy();
+      })
+  ;
 }
+
+module.exports = {
+  getFoods: getFoods
+
+};
