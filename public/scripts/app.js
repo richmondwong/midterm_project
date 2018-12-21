@@ -10,3 +10,9 @@
 // });
 
 // remember AJAX should be used for single page stuff (think tweeter) and is called in the server.js file
+
+$(document).ready(function() {
+
+$('#testObject').slideToggle()
+
+});
