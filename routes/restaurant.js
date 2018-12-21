@@ -15,6 +15,32 @@ module.exports = (knex) => {
   //RENDER order summary page for restaurant
   router.get("/summary", (req,res)=>{
 
+
+    //SQL: Grab all order ids
+    //SELECT orderid FROM orders;
+    let orderIdArr = [];
+    knex.select('orderid').from('orders')
+      .then( (results) => {
+        results.forEach( (element) => {
+          //SQL query from order# details:
+          //SELECT * FROM "ordersFoods" JOIN foods ON "ordersFoods".foodid=foods.foodid WHERE orderid = 7
+          knex.select('orderid', 'foods.foodid', 'food.name', 'food_quantity')
+            .from('ordersFoods')
+            .join('foods', 'foods.foodid', '=', 'ordersFoods.foodid')
+            .where('orderid', '=', element.orderid)
+            .then((results) => {
+              console.log("orders:", results);
+            });
+
+        });
+
+        console.log("order query:", results);
+      })
+      .catch((err) => {
+        console.log("Error in order query:", err);
+      })
+
+
       knex // write query that gets the join table so orders can be seen by restaurant TODO !!!
       .select("*")
       .from('orders')
@@ -34,7 +60,7 @@ module.exports = (knex) => {
         res.send("sent to restaurant summary page - ejs not ready yet");
       })
       .catch((err)=>{
-        console.log("we have an error: ",err);
+        console.log("Error @Get Rest Summary: ",err);
       })
   });
 
