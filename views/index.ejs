@@ -1,85 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Menu</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <title>Menu</title>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<!--   <link rel="stylesheet" href="/styles/test.css" type="text/css" /> -->
+</head>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
-
-    <body>
-
-      <div id="purchase_box">
-
+<body>
+  <div id="purchase_box">
+    <form action="/order" method="POST">
+      <h1> Order Input Area</h1>
       <div>
         <div>
           <img src="images/burger.jpg" height="70" width="70">
         </div>
-        <div>
-        <h3>Item 1</h3>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <img src="images/fish.jpg" height="70" width="70">
-        </div>
-        <h3>Item 2</h3>
-      </div>
-
-
-      <div>
-        <div>
-          <img src="images/pasta.jpg" height="70" width="70">
+          <div>
+            <div>
+              <input type="text">
+            </div>
+            <h3>Item 1</h3>
+          </div>
         </div>
         <div>
-          <input type="text">
+          <div>
+            <img src="images/fish.jpg" height="70" width="70">
         </div>
-        <h3>Item 3</h3>
-      </div>
-
-      </div>
-
-
-
-      <br>
-      <br>
-
-      <div id="input_details_box">
-        <form action="/order" method="POST">
-          <!--- Insert values taken from purchase_box -->
-          Your Name <input type="text" name="customer_name" value="Your Name"><br>
-          Phone Number <input type="text" name="phone_number" value="Input phone #"><br>
-          <input type="submit" value="Submit">
-        </form>
-
-      </div>
-
-      <br>
-      <br>
-
-      <div id="basket_confirmation_box">
-        <form action="/confirm" method="POST">
+            <div>
+              <input type="text">
+            </div>
+            <h3>Item 2</h3>
+          </div>
+          <div>
+            <div>
+              <img src="images/pasta.jpg" height="70" width="70">
+        </div>
+              <div>
+                <input type="text">
+              </div>
+              <h3>Item 3</h3>
+            </div>
+            <br>
+            <br>
+            <div id="input_details_box">
+              Your Name <input type="text" name="customer_name" value="Your Name"><br>
+              Phone Number <input type="text" name="phone_number" value="Input phone #"><br>
+              <input type="submit" value="Submit">
+            </div>
+    </form>
+  </div>
+  <br>
+  <br>
+  <div id="basket_confirmation_box">
+    <form action="/confirm" method="POST">
+      <h1>Basket Area </h1>
       <button>Confirm Order</button>
-      </div>
+    </form>
+  </div>
+  <h1> is this working</h1>
+  <h2> restaurant Menu </h2>
+  <div>
+    <% for (foodItem of menu) {%>
+    <li>
+      <%= foodItem.name %>
+    </li>
+    <li>
+      <%= foodItem.price %>
+    </li>
+    <% } %>
+  </div>
+</body>
 
-    <h1> is this working</h1>
-    <h2> restaurant Menu </h2>
-
-    <div> <% for (foodItem of menu) {%>
-          <li> <%= foodItem.name %> </li>
-          <li> <%= foodItem.price %> </li>
-
-       <% } %>
-
-    </div>
-
-
-
-
-  </body>
 </html>
