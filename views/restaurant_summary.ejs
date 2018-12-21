@@ -6,6 +6,13 @@
 <body>
   <h1>Restaurant Order Summary</h1>
 
+  <div>
+    <% for (foodItem of menu) {%>
+      <li> <%= foodItem.name %> </li>
+      <li> <%= foodItem.price %> </li>
 
+    <% } %>
+
+   </div>
 </body>
 </html>
