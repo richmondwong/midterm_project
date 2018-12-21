@@ -15,27 +15,41 @@ module.exports = (knex) => {
   //RENDER order summary page for restaurant
   router.get("/summary", (req,res)=>{
 
-      knex // write query that gets the join table so orders can be seen by restaurant TODO !!!
-      .select("*")
-      .from('orders')
-      .then((results) => {
-          const clientOrder = results;
+    let orderIdArr = [];
+    let templateVars = {};
 
-          console.log("this is the clientOrder from knex query that the restuaruant will see: ", clientOrder); //check to see whats actually being returned by query
+    //SQL: Grab all order ids
+    //SELECT orderid FROM orders;
+    knex.select('orderid').from('orders')
+      .then( (results) => {
+        results.forEach( (item) => {
+          orderIdArr.push(item['orderid']);
+        });
+        console.log("orderid results:", orderIdArr);
+        //SQL query from order# details:
+        //SELECT * FROM "ordersFoods" JOIN foods ON "ordersFoods".foodid=foods.foodid WHERE orderid = 7
+        knex.select('orderid', 'foods.foodid', 'foods.name', 'food_quantity')
+          .from('ordersFoods')
+          .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
+          .whereIn('orderid', orderIdArr)
+          .then((results) => {
+            templateVars = results;
+            //console.log("templateVars Data:", templateVars);
+            return templateVars;
+          })
+          .then( (templateVars) => {
+            console.log("temp:", templateVars);
+            res.render("restaurant_summary", {orders:templateVars});
+          })
+          .catch((err) => {
+            console.log("Error @query for foods:", err);
+          });
+      })
 
-          const templateVars = {
-            order : clientOrder
-          };
+      .catch((err) => {
+        console.log("Error in order query:", err);
+      })
 
-          return templateVars;
-      })
-      .then((template) =>{
-        //res.render("restaurant_summary", template);
-        res.send("sent to restaurant summary page - ejs not ready yet");
-      })
-      .catch((err)=>{
-        console.log("we have an error: ",err);
-      })
   });
 
   router.post("/", (req, res) => {

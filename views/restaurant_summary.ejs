@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant Order Summary</title>
+</head>
+<body>
+  <h1>Restaurant Order Summary</h1>
+
+  <div>
+    <% for (let i = 0; i < orders.length; i++) {%>
+      <li> Order#: <%= orders[i]['orderid']%> Item: <%= orders[i]['name'] %> Quantity: <%= orders[i]['food_quantity'] %></li>
+
+    <% } %>
+
+  </div>
+</body>
+</html>
