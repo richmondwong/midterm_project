@@ -67,7 +67,7 @@ app.get("/", (req, res) => {
 });
 
 //route to get the confirmation page where message saying order has been placed will appear
-app.get("/order/final", (req,res)=>{
+app.get("/order/confirm", (req,res)=>{
   try {
     res.render("order_confirm");
   } catch (err){
@@ -77,7 +77,7 @@ app.get("/order/final", (req,res)=>{
 })
 
 //route to get to order confirm page where order id displayed as id in url
-app.get("/order/confirm", (req,res) =>{
+app.get("/order/:id", (req,res) =>{
 
   const NewOrderId = req.params.id;
 
@@ -177,7 +177,7 @@ app.post("/order", (req, res) => {
     res.cookie("cart", cookieData, { expires: new Date(Date.now() + 900000)});
 
     //redirect to comfirmation page.
-    // res.redirect("/order/confirm");
+    //res.redirect("/order/confirm");
     res.send("POSTED, check for cookie");
   } catch (err){
     console.log("Error @ post /order:", err);
