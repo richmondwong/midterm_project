@@ -15,26 +15,36 @@ module.exports = (knex) => {
   //RENDER order summary page for restaurant
   router.get("/summary", (req,res)=>{
 
+    let orderIdArr = [];
+    let templateVars = {};
 
     //SQL: Grab all order ids
     //SELECT orderid FROM orders;
-    let orderIdArr = [];
     knex.select('orderid').from('orders')
       .then( (results) => {
         results.forEach( (element) => {
+
           //SQL query from order# details:
           //SELECT * FROM "ordersFoods" JOIN foods ON "ordersFoods".foodid=foods.foodid WHERE orderid = 7
-          knex.select('orderid', 'foods.foodid', 'food.name', 'food_quantity')
+          knex.select('orderid', 'foods.foodid', 'foods.name', 'food_quantity')
             .from('ordersFoods')
-            .join('foods', 'foods.foodid', '=', 'ordersFoods.foodid')
+            .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
             .where('orderid', '=', element.orderid)
             .then((results) => {
-              console.log("orders:", results);
+              templateVars[results[0].orderid] = results;
+              return templateVars;
+              console.log("templateVars:", templateVars);
+            })
+            .then( (templateVars) => {
+              res.render("restaurant_summary", templateVars);
+            })
+            .catch((err) => {
+              console.log("Error @query for foods:", err);
             });
 
         });
 
-        console.log("order query:", results);
+        //console.log("order query:", results);
       })
       .catch((err) => {
         console.log("Error in order query:", err);
