@@ -13,8 +13,28 @@
 var basket = {}
 
 $(document).ready(function(){
-// jquery to send to cart if add to car button clicked
+// jquery to send to cart if add to car button
+function checkType(price){
+  if (typeof price === 'string'){
+    var numberPrice = parseFloat(price).toFixed(2);
+  } else {
+    var numberPrice = price;
+  }
+  return numberPrice
+}
 
+function calculateTotalPrice(basket){
+
+ let total = 0;
+
+  for (foodId in basket){
+    var itemCost = (basket[foodId].quantity * basket[foodId].price)
+
+    total += itemCost
+  }
+
+ return total.toFixed(2);
+}
 
 function createItem(foodId){
  let $food_item = $("<div class='food_item'></div>");
@@ -35,10 +55,12 @@ function renderBasket(basket){
   $("#food_cart").empty();
 
   for(foodId in basket){
-    var newFoodItem = createItem(foodId);
+    const newFoodItem = createItem(foodId);
     $("#food_cart").prepend(newFoodItem);
   }
 
+  let total= calculateTotalPrice(basket);
+  $("#food_cart").prepend(total)
 }
 
 // function deleteFromBasket(id){
@@ -48,9 +70,10 @@ function renderBasket(basket){
   $(".add_to_cart").on("click", function(){
 
      let foodName = $(this).data('food-name');
-     let foodPrice = $(this).data('food-price');
+     let foodPrice = checkType($(this).data('food-price'));
      let foodId = $(this).data('food-id')
 
+console.log(foodPrice)
 
     if (foodId in basket){
         basket[foodId].quantity += 1;
