@@ -48,6 +48,40 @@
 
       <br>
       <br>
+    <h1> is this working</h1>
+    <h2> restaurant Menu </h2>
+
+    <br>
+
+     <div class = "food_object">
+
+      <% for (foodItem of menu) {%>
+          <li> <%= foodItem.foodid %> </li>
+          <li> <%= foodItem.name %> </li>
+          <li> <%= foodItem.price %> </li>
+          <li><button class="add_to_cart" type="button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>"> PLUS </button></li>
+           <li><button class="minus_from_cart" type="button" data-food-id="<%= foodItem.foodid %>" > MINUS </button></li>
+
+
+
+       <% } %>
+
+    </div>
+
+    <br>
+    <br>
+
+    <div id="basket">
+ <p> this is the interactive food cart</p>
+      <div id="food_cart">
+
+
+
+
+
+      </div>
+
+       <button>Confirm Order</button>
 
       <div id="input_details_box">
         <form action="/order" method="POST">
@@ -57,28 +91,17 @@
           <input type="submit" value="Submit">
         </form>
 
-      </div>
-
-      <br>
-      <br>
+        <button>Confirm Order</button>
 
       <div id="basket_confirmation_box">
         <form action="/confirm" method="POST">
       <button>Confirm Order</button>
+
       </div>
-
-    <h1> is this working</h1>
-    <h2> restaurant Menu </h2>
-
-    <div> <% for (foodItem of menu) {%>
-          <li> <%= foodItem.name %> </li>
-          <li> <%= foodItem.price %> </li>
-
-       <% } %>
-
     </div>
 
-
+      <br>
+      <br>
 
 
   </body>
