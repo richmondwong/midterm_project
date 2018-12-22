@@ -81,35 +81,18 @@
     <br>
 
 
-<!-- <div class="testFoodObject">
-  <% for (foodItem of menu) {%>
-    <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="images/pasta.jpg" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><%= foodItem.name %></h5>
-    <p class="card-text"><%= foodItem.price %> </p>
-    <button type="button" class="add_to_cart btn btn-success" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>">Add</button>
-    <button type="button" class="minus_from_cart btn btn-danger" data-food-id="<%= foodItem.foodid %>">Remove</button>
-  </div>
-</div>
-<% } %>
-</div>
- -->
+
 
 
 <div class="testFoodObject">
   <% for (foodItem of menu) {%>
 
   <div class="card" style="width: 18rem;">
+  <% var test = " " %>
+  <% if (foodItem.foodid === 7) {test = "images/fish.jpg"} else { %>
+  <% test = "images/pasta.jpg"} %>
 
-  <% if (foodItem.foodid === 7) {%>
-    <% test = "images/fish.jpg" %>
-  <% } %>
-  <% else { %>
-  <% test = "images/pasta.jpg"
-<% } %>
-
-  <img class="card-img-top" src="images/pasta.jpg" alt="Card image cap">
+  <img class="card-img-top" src="<%=test%>" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title"><%= foodItem.name %></h5>
     <p class="card-text"><%= foodItem.price %> </p>
