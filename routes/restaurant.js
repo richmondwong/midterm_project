@@ -67,6 +67,9 @@ module.exports = (knex) => {
 
       let orderId = req.body.sms_orderid;
       let prepTime = req.body.prep_time
+
+
+
       let orderUpdate = {
         completed: 1,
         prep_time: prepTime
@@ -83,7 +86,7 @@ module.exports = (knex) => {
 
           client.messages.create(
           {
-            body: `Hi ${results[0].name}, your order (#${orderId}) will be complete in ${prepTime} minutes.`,
+            body: `Hi ${results[0].name}, your order (#${orderId}) will be ready for pick up in ${prepTime} minutes.`,
             from: '+16475594746',
             to: phone
           }).then(message => console.log(message.sid)).done();
