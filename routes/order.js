@@ -14,12 +14,6 @@ module.exports = (knex) => {
 
     var cart = req.cookies.cart;
 
-    let templateVars = {
-      name : cart.name,
-      phone: cart.phone,
-      foodOrder : cart.foodOrder,
-      totalPrice : cart.totalPrice
-    }
 
     // res.render("order_confirm")
 
@@ -28,12 +22,12 @@ module.exports = (knex) => {
       res.redirect("/")
     } else {
 
-      // let templateVars = {
-      // name : cart.name,
-      // phone: cart.phone,
-      // foodOrder : cart.foodOrder,
-      // totalPrice : cart.totalPrice
-      // }
+      let templateVars = {
+      name : cart.name,
+      phone: cart.phone,
+      foodOrder : cart.foodOrder,
+      totalPrice : cart.totalPrice
+      }
 
       console.log("this is template Vars food order", templateVars.foodOrder)
       res.render("order_confirm", templateVars);
@@ -190,9 +184,6 @@ module.exports = (knex) => {
 
   });
 
-  router.get("/food/confirm", (req, res) => {
-    res.render("order_confirm");
-  });
 
   router.post("/send", (req, res) => {
     var phoneVar = "Dude"
