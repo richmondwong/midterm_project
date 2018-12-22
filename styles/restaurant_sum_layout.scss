@@ -1,0 +1,35 @@
+/*.main_container {
+  display: flex;
+  justify-content: center;
+
+}*/
+
+.summary_text {
+  font-size: 50px;
+  /*border: solid;*/
+}
+
+.jumbotron {
+  width: 50%;
+  background-color: #FFAD0D!important;
+}
+
+.jumbo_container {
+  display: flex;
+  flex-direction: column;
+  border: solid;
+/*  border-color: red;*/
+}
+
+.main_container {
+/*  border: solid;*/
+}
+
+.jumbo_individual_container {
+ /* border: solid;*/
+/*  border-color: green;*/
+  display: flex;
+  justify-content: center;
+}
+
+
