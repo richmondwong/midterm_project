@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/restsum.js"></script>
   <link rel="stylesheet" href="/styles/restaurant_sum_layout.css" type="text/css" />
   <!--   <link rel="stylesheet" href="/styles/test.css" type="text/css" /> -->
 
@@ -51,6 +51,10 @@
                 <% }) %>
               </ol>
             </p>
+            <form action="/restaurant/summary" method="POST">
+              <input class="prep" type="text" name="prep_time" placeholder="Time to prepare">
+              <button class="prep_submit">Submit</button>
+            </form>
             <button type="button" class="btn btn-danger">Delete Order</button>
           </div>
         </div>
