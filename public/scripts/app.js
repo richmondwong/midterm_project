@@ -40,11 +40,12 @@ function calculateTotalPrice(basket){
 function createItem(foodId){
  let $food_item = $("<div class='food_item'></div>");
 
+ let id = `<div class="id">${basket[foodId].id}</div>`;
  let name = `<div class="name">${basket[foodId].name}</div>`;
  let price = `<div class="price">${basket[foodId].price}</div>`;
  let quantity = `<div class="quantity">${basket[foodId].quantity}</div>`;
 
-
+ $food_item.append(id);
  $food_item.append(name);
  $food_item.append(price);
  $food_item.append(quantity);
@@ -52,16 +53,31 @@ function createItem(foodId){
  return $food_item
 }
 
+
 function renderBasket(basket){
   $("#food_cart").empty();
+  $("#client_details").empty();
 
   for(foodId in basket){
     const newFoodItem = createItem(foodId);
-    $("#food_cart").prepend(newFoodItem);
+    $("#food_cart").append(newFoodItem);
+
+    let input=document.createElement('input')
+    input.type='hidden';
+    input.name='food_basket_item[]';
+    input.value=JSON.stringify(basket[foodId]);
+
+    $("#client_details").append(input)
+
   }
 
   let total= calculateTotalPrice(basket);
   $("#food_cart").append(total)
+  $("#client_details").append(`<input type="hidden" name="food_basket_total" value="${total}">`)
+
+  // const newHiddenObject = addObject(basket);
+  // $("#client_details").append(newHiddenObject)
+
 }
 
 // function deleteFromBasket(id){
@@ -80,6 +96,7 @@ console.log(foodPrice)
         basket[foodId].quantity += 1;
     } else {
         basket[foodId]= {
+          id: foodId,
           name: foodName,
           price: foodPrice,
           quantity: 1

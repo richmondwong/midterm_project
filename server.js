@@ -52,7 +52,7 @@ app.get("/", (req, res) => {
     .then((results) => {
       const menu = results;
 
-      console.log("this is the menu from knex query: ", menu);
+      // console.log("this is the menu from knex query: ", menu);
 
       const templateVars = {
         menu: menu
@@ -63,6 +63,7 @@ app.get("/", (req, res) => {
     })
     .then((template) =>{
       res.render("index", template);
+      console.log("this is the cookie that has been set!: ", res.cookie.cart )
     })
     .catch((err)=>{
       console.log("Error @GET / : ", err)
