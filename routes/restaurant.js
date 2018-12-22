@@ -2,6 +2,9 @@
 
 const express = require('express');
 const router  = express.Router();
+const accountSid = 'AC179754f7af01989ecab3b52a6b9755be';
+const authToken = '913da9bf2a42df203863cd3644ca928f';
+const client = require('twilio')(accountSid, authToken);
 
 module.exports = (knex) => {
 
@@ -22,7 +25,6 @@ module.exports = (knex) => {
     //JOIN orders ON orders.orderid="ordersFoods".orderid
     //JOIN clients ON clients.clientid=orders.clientid;
 
-    //SELECT * FROM "ordersFoods" JOIN foods ON "ordersFoods".foodid=foods.foodid WHERE orderid = 7
     knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
       .from('ordersFoods')
       .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
@@ -42,7 +44,7 @@ module.exports = (knex) => {
             groupedObjects[orders[i]['orderid']] = [orders[i]];
           }
         }
-        console.log("temp:", groupedObjects);
+        //console.log("temp:", groupedObjects);
         res.render("restaurant_summary", {orders:groupedObjects});
       })
       .catch((err) => {
@@ -59,9 +61,30 @@ module.exports = (knex) => {
     }
   });
 
+  //Send SMS with prep time
   router.post("/summary", (req, res) => {
     try{
-      res.redirect("/restaurant/summary");
+      let orderId = req.body.sms_orderid;
+      let prepTime = req.body.prep_time
+      let orderUpdate = {
+        completed: 1,
+        prep_time: prepTime
+      };
+
+      client.messages.create(
+      {
+        body: `Your order will be complete in ${prepTime} minutes.`,
+        from: '+16475594746',
+        to: '+16475049239'
+      }).then(message => console.log(message.sid)).done();
+
+      //Set the order as 'completed' so sms is sent
+      knex('orders').where('orderid', '=', orderId).update(orderUpdate)
+        .then( () => {
+          res.redirect("/restaurant/summary");
+        })
+
+
     } catch (err) {
       console.log("Error @Post restaurant/summary:", err);
     }

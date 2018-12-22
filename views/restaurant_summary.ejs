@@ -51,9 +51,12 @@
                 <% }) %>
               </ol>
             </p>
-            <form action="/restaurant/summary" method="POST">
+            <form class="prep_insert hide" action="/restaurant/summary" method="POST">
               <input class="prep" type="text" name="prep_time" placeholder="Time to prepare">
-              <button class="prep_submit">Submit</button>
+
+              <input class="sms_sent" type="hidden" name="sms_sent" value= <%= orders[orderid][0]['completed'] %> >
+              <input class="sms_orderid" type="hidden" name="sms_orderid" value= <%= orderid %> >
+              <button class="prep_btn">Send SMS</button>
             </form>
             <button type="button" class="btn btn-danger">Delete Order</button>
           </div>
