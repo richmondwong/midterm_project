@@ -73,7 +73,7 @@ module.exports = (knex) => {
 
       client.messages.create(
       {
-        body: `Your order will be complete in ${prepTime} minutes.`,
+        body: `Your order (#${orderId}) will be complete in ${prepTime} minutes.`,
         from: '+16475594746',
         to: '+16475049239'
       }).then(message => console.log(message.sid)).done();
