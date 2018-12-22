@@ -29,6 +29,7 @@ app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -52,7 +53,7 @@ app.get("/", (req, res) => {
     .then((results) => {
       const menu = results;
 
-      console.log("this is the menu from knex query: ", menu);
+      // console.log("this is the menu from knex query: ", menu);
 
       const templateVars = {
         menu: menu
@@ -63,6 +64,7 @@ app.get("/", (req, res) => {
     })
     .then((template) =>{
       res.render("index", template);
+      console.log("this is the cookie that has been set!: ", req.cookies.cart)
     })
     .catch((err)=>{
       console.log("Error @GET / : ", err)
