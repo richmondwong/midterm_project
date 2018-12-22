@@ -3,6 +3,10 @@
 const express = require('express');
 const router  = express.Router();
 
+const accountSid = 'AC179754f7af01989ecab3b52a6b9755be';
+const authToken = '913da9bf2a42df203863cd3644ca928f';
+const client = require('twilio')(accountSid, authToken);
+
 module.exports = (knex) => {
 
   //RENDER order confirm page
@@ -26,7 +30,8 @@ module.exports = (knex) => {
       // })
       // .then((template) =>{
         //res.render("order_id", template);
-        res.send("sent to order confirmation page - EJS not ready yet");
+        // res.send("sent to order confirmation page - EJS not ready yet");
+        res.render("order_confirm")
       // })
       // .catch((err)=>{
       //   console.log("Error @GET order/confirm: ",err);
@@ -119,5 +124,24 @@ module.exports = (knex) => {
 
   });
 
+  router.get("/food/confirm", (req, res) => {
+    res.render("order_confirm");
+  });
+
+  router.post("/send", (req, res) => {
+    var phoneVar = "Dude"
+
+    client.messages.create(
+    {
+      body: `${phoneVar}`,
+      from: '+16475594746',
+      to: '+14167958562'
+    }).then(message => console.log(message.sid)).done();
+  });
+
+
+
  return router;
 }
+
+
