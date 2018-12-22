@@ -32,7 +32,7 @@ exports.seed = async function(knex, Promise) {
   function insertClients() {
     return knex('clients').insert([
       {name:'Gordon Ramses', phone_number: 6475049239},
-      {name:'Jamie Oliver', phone_number: 4163334444}
+      {name:'Jamie Oliver', phone_number: 6475049239}
 
     ]).returning('*');
   }
