@@ -27,7 +27,7 @@ module.exports = (knex) => {
           orderIdArr.push(item['orderid']);
         });
 
-        console.log("orderid results:", orderIdArr);
+        //console.log("orderid results:", orderIdArr);
 
         //SQL query from order# details:
         //SELECT * FROM "ordersFoods" JOIN foods ON "ordersFoods".foodid=foods.foodid WHERE orderid = 7
@@ -36,12 +36,20 @@ module.exports = (knex) => {
           .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
           .whereIn('orderid', orderIdArr)
           .then( (orders) => {
-            // let groupedObjects = {};
-            // for(order of orders) {
 
-            // }
-            console.log("temp:", orders);
-            res.render("restaurant_summary", {orders});
+            //create an Object {orderid: [{food data},{food data},...] }
+            let groupedObjects = {};
+            for(let i in orders) {
+
+              if( groupedObjects[orders[i]['orderid']] ){
+                groupedObjects[orders[i]['orderid']].push(orders[i]);
+              }
+              else {
+                groupedObjects[orders[i]['orderid']] = [orders[i]];
+              }
+            }
+            console.log("temp:", groupedObjects);
+            res.render("restaurant_summary", {orders:groupedObjects});
           })
           .catch((err) => {
             console.log("Error @query for foods:", err);
