@@ -1,12 +1,11 @@
 "use strict";
 
-import moment from 'moment';
-
 const express = require('express');
 const router  = express.Router();
 const accountSid = 'AC179754f7af01989ecab3b52a6b9755be';
 const authToken = '913da9bf2a42df203863cd3644ca928f';
 const client = require('twilio')(accountSid, authToken);
+const moment = require('moment');
 
 module.exports = (knex) => {
 
@@ -70,8 +69,9 @@ module.exports = (knex) => {
       let orderId = req.body.sms_orderid;
       let prepTime = req.body.prep_time
 
-      let doneTime = moment().add(prep_time, 'minutes').calendar();
-      console.log("complete at:",doneTime);
+      let doneTime = moment().add(prepTime, 'minutes').calendar();
+      console.log("current time:", moment().format('hh:mm a'));
+      console.log("complete at:", doneTime);
 
       let orderUpdate = {
         completed: 1,
