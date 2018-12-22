@@ -3,10 +3,42 @@
 const express = require('express');
 const router  = express.Router();
 
+const accountSid = 'AC179754f7af01989ecab3b52a6b9755be';
+const authToken = '913da9bf2a42df203863cd3644ca928f';
+const client = require('twilio')(accountSid, authToken);
+
 module.exports = (knex) => {
 
   //RENDER order confirm page
   router.get("/confirm", (req,res) =>{
+
+    var cart = req.cookies.cart;
+
+    let templateVars = {
+      name : cart.name,
+      phone: cart.phone,
+      foodOrder : cart.foodOrder,
+      totalPrice : cart.totalPrice
+    }
+
+    // res.render("order_confirm")
+
+
+    if(!cart){
+      res.redirect("/")
+    } else {
+
+      // let templateVars = {
+      // name : cart.name,
+      // phone: cart.phone,
+      // foodOrder : cart.foodOrder,
+      // totalPrice : cart.totalPrice
+      // }
+
+      console.log("this is template Vars food order", templateVars.foodOrder)
+      res.render("order_confirm", templateVars);
+    }
+
 
     // knex // write query that gets the join table TODO !!!
     //   .select('*')
@@ -19,6 +51,13 @@ module.exports = (knex) => {
 
     //       const templateVars = {
     //         order : clientOrder
+
+    // const cart = {
+    //   name : cookieCustomerObj.customerName,
+    //   phone : cookieCustomerObj.customerPhone,
+    //   foodOrder : foodOrder,
+    //   totalPrice : cookieCustomerObj.customerTotalPrice
+    // }
     //       };
 
 
@@ -26,7 +65,6 @@ module.exports = (knex) => {
       // })
       // .then((template) =>{
         //res.render("order_id", template);
-        res.send("sent to order confirmation page - EJS not ready yet");
       // })
       // .catch((err)=>{
       //   console.log("Error @GET order/confirm: ",err);
@@ -73,51 +111,103 @@ module.exports = (knex) => {
 
   });
 
-  //GRAB data from cookie, INSERT to DB
+  //GRAB data from main page and set basket as cookie, redirect to /confirm page
   router.post("/confirm", (req, res) => {
-    try {
-      //grab data from cookie.
-      let orderObj = req.cookies;
 
-      //input the data to the db
-      let newClient = [{
-        name: orderObj.name,
-        phone_number: orderObj.phone
-      }];
-      let clientId;
-      let orderId;
+    const orderObj = (req.body);
+    console.log(orderObj);
 
-      knex('clients').insert(newClient)
-        .then( () => {
-          clientId = knex('clients').select(clientid).orderBy('clientid', 'desc').limit(1);
-          return clientid;
-        })
-        .then( (id) => {
-          let newOrder = {
-            clientid: id
-          };
-
-          knex('orders').insert(newOrder);
-        })
-        .then( () => {
-          orderId = knex('orders').select(orderid).orderBy('orderid', 'desc').limit(1);
-          knex('ordersFoods').insert({ orderid: orderId,
-                                        foodid: orderObj[food1][id],
-                                        food_quantity: orderObj[food1][f1q]});
-          knex('ordersFoods').insert({ orderid: orderId,
-                                        foodid: orderObj[food2][id],
-                                        food_quantity: orderObj[food2][f2q]});
-          knex('ordersFoods').insert({ orderid: orderId,
-                                        foodid: orderObj[food3][id],
-                                        food_quantity: orderObj[food3][f3q]});
-        })
-
-        res.send("confirmation complete - to redirect to final page");
-    } catch (err) {
-      console.log("Error @POST /order/confirm:", err);
+    const cookieCustomerObj = {
+      customerName : orderObj.customer_name,
+      customerPhone: orderObj.phone_number,
+      customerTotalPrice: orderObj.food_basket_total
     }
+
+    let cookieFoodItems = orderObj.food_basket_item;
+
+    const foodOrder = []
+
+    for (foodItem of cookieFoodItems){
+      foodOrder.push(JSON.parse(foodItem))
+    }
+
+    console.log("this is the customer info: ", cookieCustomerObj);
+    console.log("this is the food info: ", foodOrder);
+
+    const cart = {
+      name : cookieCustomerObj.customerName,
+      phone : cookieCustomerObj.customerPhone,
+      foodOrder : foodOrder,
+      totalPrice : cookieCustomerObj.customerTotalPrice
+    }
+
+    res.cookie("cart", cart)
+    console.log("this is the cart object: ", cart)
+
+
+    res.redirect("/order/confirm");
+    // try {
+      //grab data from cookie.
+    //   let orderObj = req.cookies;
+
+    //   //input the data to the db
+    //   let newClient = [{
+    //     name: orderObj.name,
+    //     phone_number: orderObj.phone
+    //   }];
+    //   let clientId;
+    //   let orderId;
+
+    //   knex('clients').insert(newClient)
+    //     .then( () => {
+    //       clientId = knex('clients').select(clientid).orderBy('clientid', 'desc').limit(1);
+    //       return clientid;
+    //     })
+    //     .then( (id) => {
+    //       let newOrder = {
+    //         clientid: id
+    //       };
+
+    //       knex('orders').insert(newOrder);
+    //     })
+    //     .then( () => {
+    //       orderId = knex('orders').select(orderid).orderBy('orderid', 'desc').limit(1);
+    //       knex('ordersFoods').insert({ orderid: orderId,
+    //                                     foodid: orderObj[food1][id],
+    //                                     food_quantity: orderObj[food1][f1q]});
+    //       knex('ordersFoods').insert({ orderid: orderId,
+    //                                     foodid: orderObj[food2][id],
+    //                                     food_quantity: orderObj[food2][f2q]});
+    //       knex('ordersFoods').insert({ orderid: orderId,
+    //                                     foodid: orderObj[food3][id],
+    //                                     food_quantity: orderObj[food3][f3q]});
+    //     })
+
+    //     res.send("confirmation complete - to redirect to final page");
+    // } catch (err) {
+    //   console.log("Error @POST /order/confirm:", err);
+    // }
 
   });
 
+  router.get("/food/confirm", (req, res) => {
+    res.render("order_confirm");
+  });
+
+  router.post("/send", (req, res) => {
+    var phoneVar = "Dude"
+
+    client.messages.create(
+    {
+      body: `${phoneVar}`,
+      from: '+16475594746',
+      to: '+14167958562'
+    }).then(message => console.log(message.sid)).done();
+  });
+
+
+
  return router;
 }
+
+
