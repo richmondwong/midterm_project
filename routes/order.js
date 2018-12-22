@@ -190,9 +190,6 @@ module.exports = (knex) => {
 
   });
 
-  router.get("/food/confirm", (req, res) => {
-    res.render("order_confirm");
-  });
 
   router.post("/send", (req, res) => {
     var phoneVar = "Dude"
