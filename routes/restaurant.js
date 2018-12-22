@@ -30,11 +30,18 @@ module.exports = (knex) => {
         //console.log("orderid results:", orderIdArr);
 
         //SQL query from order# details:
+        //SELECT * FROM "ordersFoods"
+        //JOIN foods ON "ordersFoods".foodid=foods.foodid
+        //JOIN orders ON orders.orderid="ordersFoods".orderid
+        //JOIN clients ON clients.clientid=orders.clientid;
+
         //SELECT * FROM "ordersFoods" JOIN foods ON "ordersFoods".foodid=foods.foodid WHERE orderid = 7
-        knex.select('orderid', 'foods.foodid', 'foods.name', 'food_quantity')
+        knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity')
           .from('ordersFoods')
           .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
-          .whereIn('orderid', orderIdArr)
+          .join('orders', 'ordersFoods.orderid', '=', 'orders.orderid')
+          .join('clients', 'clients.clientid', '=', 'orders.clientid')
+          //.whereIn('orderid', orderIdArr)
           .then( (orders) => {
 
             //create an Object {orderid: [{food data},{food data},...] }

@@ -36,14 +36,20 @@
         <div class="jumbotron">
           <div class="container">
             <h1 class="display-4">Order #<%= orderid %></h1>
-            <p class="lead">XYZ Order
-              <!-- interate thru food items -->
-              <% orders[orderid].forEach( (food) => { %>
-                <li>
-                  Order#: <%= food['orderid']%> Item: <%= food['name'] %> Quantity: <%= food['food_quantity'] %>
+            <p class="lead">
+              <p>Name: <%= orders[orderid][0]['cname'] %></p>
+              <p>Phone#: <%= orders[orderid][0]['phone_number'] %></p>
+              <ol>
+                <!-- interate thru food items -->
+                <% orders[orderid].forEach( (food) => { %>
 
-                </li>
-              <% }) %>
+                    <li>
+                      Item: <%= food['name'] %> Quantity: <%= food['food_quantity'] %>
+
+                    </li>
+
+                <% }) %>
+              </ol>
             </p>
             <button type="button" class="btn btn-danger">Delete Order</button>
           </div>
