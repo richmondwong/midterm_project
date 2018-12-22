@@ -82,7 +82,7 @@ module.exports = (knex) => {
     const cookieCustomerObj = {
       customerName : orderObj.customer_name,
       customerPhone: orderObj.phone_number,
-      customerTotalPrice: orderObj.food_basket_item
+      customerTotalPrice: orderObj.food_basket_total
     }
 
     let cookieFoodItems = orderObj.food_basket_item;
@@ -98,12 +98,13 @@ module.exports = (knex) => {
 
     const cart = {
       name : cookieCustomerObj.customerName,
-      phone : cookieCustomerObj.customerPrice,
+      phone : cookieCustomerObj.customerPhone,
       foodOrder : foodOrder,
       totalPrice : cookieCustomerObj.customerTotalPrice
     }
 
     res.cookie("cart", cart)
+    console.log("this is the cart object: ", cart)
 
 
     res.redirect("/")
