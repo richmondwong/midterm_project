@@ -28,25 +28,30 @@
   <p class="summary_text text-center font-weight-bold">Orders Summary </p>
 
   <div class="jumbo_container">
+    <!-- interate thru orderid ojects -->
+    <% for (let orderid in orders) {%>
 
-    <% for (let i = 0; i < orders.length; i++) {%>
+
       <div class="jumbo_individual_container">
         <div class="jumbotron">
           <div class="container">
-            <h1 class="display-4">Order #1</h1>
+            <h1 class="display-4">Order #<%= orderid %></h1>
             <p class="lead">XYZ Order
-              <li>
-                Order#: <%= orders[i]['orderid']%> Item: <%= orders[i]['name'] %> Quantity: <%= orders[i]['food_quantity'] %>
+              <!-- interate thru food items -->
+              <% orders[orderid].forEach( (food) => { %>
+                <li>
+                  Order#: <%= food['orderid']%> Item: <%= food['name'] %> Quantity: <%= food['food_quantity'] %>
 
-              </li>
+                </li>
+              <% }) %>
             </p>
             <button type="button" class="btn btn-danger">Delete Order</button>
           </div>
         </div>
       </div>
 
-    <% } %>
 
+    <% } %>
   </div>
 </div>
 
