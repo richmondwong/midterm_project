@@ -9,13 +9,17 @@
 
 
   <title>Menu</title>
+
+
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Permanent+Marker|Playfair+Display:400,700" rel="stylesheet">
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <!--   <link rel="stylesheet" href="/styles/test.css" type="text/css" /> -->
+
 
   <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -25,12 +29,13 @@
 <body>
 
 <div class="page_container">
+  <div class="all_items_container">
 
 <div class="jumbotron">
-  <h1 class="display-4">Al's Diner</h1>
-  <p class="lead">Affordable Comfort Food (Just Like Mom Used to Make It)</p>
+  <h1 class="display-4" style="font-family:Permanent Marker; font-size: 80px;">Heart Attack Grill</h1>
+  <p class="lead" style="font-family:Lora;">Forget cigarettes and alcohol - overindulge in us instead</p>
 
-
+  <div class="carousel_container">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -57,85 +62,67 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+</div>
 
-
-<br><br><br><br><br>
-
-
+<br>
+<br>
+<br>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-<!--   <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+  <div class="below_photo_container">
+  <p  style="font-family:Lora; font-size: 20px">Discount available for veterans, seniors and those with unsound medical conditions</p>
+  </div>
+</div>
+
+<div class="menu_container">
+      <br>
+      <br>
+    <h2 style="font-family:Permanent Marker; text-align: center; font-size: 60px;">Make Your Meal</h2>
+
+    <br>
+
+
+<!-- <div class="testFoodObject">
+  <% for (foodItem of menu) {%>
+    <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="images/pasta.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= foodItem.name %></h5>
+    <p class="card-text"><%= foodItem.price %> </p>
+    <button type="button" class="add_to_cart btn btn-success" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>">Add</button>
+    <button type="button" class="minus_from_cart btn btn-danger" data-food-id="<%= foodItem.foodid %>">Remove</button>
+  </div>
+</div>
+<% } %>
+</div>
+ -->
+
+
+<div class="testFoodObject">
+  <% for (foodItem of menu) {%>
+
+  <div class="card" style="width: 18rem;">
+
+  <% if (foodItem.foodid === 7) {%>
+    <% test = "images/fish.jpg" %>
+  <% } %>
+  <% else { %>
+  <% test = "images/pasta.jpg"
+<% } %>
+
+  <img class="card-img-top" src="images/pasta.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= foodItem.name %></h5>
+    <p class="card-text"><%= foodItem.price %> </p>
+    <button type="button" class="add_to_cart btn btn-success" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>">Add</button>
+    <button type="button" class="minus_from_cart btn btn-danger" data-food-id="<%= foodItem.foodid %>">Remove</button>
+  </div>
+</div>
+<% } %>
 </div>
 
 
 
-  <div id="purchase_box">
- <!--    <form action="/order" method="POST">
-      <h1> Order Input Area</h1>
-      <div>
-        <div>
-          <img src="images/burger.jpg" height="70" width="70">
-        </div>
-          <div>
-            <div>
-              <input type="text">
-            </div>
-            <h3>Item 1</h3>
-          </div>
-        </div>
-        <div>
-          <div>
-            <img src="images/fish.jpg" height="70" width="70">
-        </div>
-            <div>
-              <input type="text">
-            </div>
-            <h3>Item 2</h3>
-          </div>
-          <div>
-            <div>
-              <img src="images/pasta.jpg" height="70" width="70">
-        </div>
-              <div>
-                <input type="text">
-              </div>
-              <h3>Item 3</h3>
-            </div>
-            <br>
-            <br>
-            <div id="input_details_box">
-              Your Name <input type="text" name="customer_name" value="Your Name"><br>
-              Phone Number <input type="text" name="phone_number" value="Input phone #"><br>
-              <input type="submit" value="Submit">
-            </div>
-    </form> -->
-  </div>
-  <br>
-  <br>
- <!--  <div id="basket_confirmation_box">
-    <form action="/confirm" method="POST">
-      <h1>Basket Area </h1>
-      <button>Confirm Order</button>
-    </form>
-  </div> -->
 
-
-
-  <p>
-<a href="#" class = "btn btn-default btn-lg" role="button">More info</a>
-<button type="submit" class = "btn btn-danger" role = "button">Button</button>
-<input type="button" value="Info" class = "btn btn-info">
-<button type="submit" class = "btn-primary btn-sm">Primary</button>
-<button type="submit" class = "btn btn-success btn-xs">Success</button>
-<button type="submit" class = "btn btn-warning btn-lg">Warning</button>
-<button type="submit" class = "btn btn-link btn-lg">Link</button>
-
-      <br>
-      <br>
-    <h1> is this working</h1>
-    <h2> restaurant Menu </h2>
-
-    <br>
 
      <div class = "food_object">
 
@@ -145,11 +132,7 @@
           <li> <%= foodItem.price %> </li>
           <li><button class="add_to_cart" type="button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>"> PLUS </button></li>
            <li><button class="minus_from_cart" type="button" data-food-id="<%= foodItem.foodid %>" > MINUS </button></li>
-
-
-
        <% } %>
-
     </div>
 
     <br>
@@ -179,64 +162,15 @@
   </form>
 
 
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-<div class="btn-group btn-group-lg" role="group" aria-label="...">
-  <button type="button" class="btn btn-default">Small</button>
-  <button type="button" class="btn btn-default">Medium</button>
-  <button type="button" class="btn btn-default">Large</button>
 </div>
 
-
-</p>
-
-
-
-
-
-
-
-  <h1> is this working</h1>
-  <h2> restaurant Menu </h2>
-  <div>
-    <% for (foodItem of menu) {%>
-    <li>
-      <%= foodItem.name %>
-    </li>
-    <li>
-      <%= foodItem.price %>
-    </li>
-    <% } %>
-  </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-        <button>Confirm Order</button>
-
-      <div id="basket_confirmation_box">
-        <!-- <form action="/confirm" method="POST"></form> -->
-
-      <button>Confirm Order</button>
-
-      </div>
-    </div>
-
-      <br>
-      <br>
-
-
+  </div>
+  </div>
 </div>
 </body>
 

@@ -1,5 +1,6 @@
 body {
   background-color: #EEE;
+  font-family: 'Permanent Marker', cursive;
 
   h1 {
     color: #244751;
@@ -20,3 +21,59 @@ body {
   height:360px;
 }
 
+.page_container {
+  border: solid;
+  border-color: red;
+  display: flex;
+  justify-content: center;
+}
+
+.all_items_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.jumbotron {
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFCF9B!important;
+}
+
+h1.display-4 {
+  border: solid;
+  text-align: center;
+}
+
+p.lead{
+  border: solid;
+  text-align: center;
+}
+
+.below_photo_container {
+  border: solid;
+  text-align: center;
+}
+
+.carousel_container {
+  border: solid;
+  display: flex;
+  justify-content: center;
+}
+
+.menu_container {
+  border: solid;
+}
+
+.testFoodObject {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+ /* flex-direction: column;*/
+  width: 800px;
+  border: solid;
+}
+
+.card {
+  margin: 20px;
+}
