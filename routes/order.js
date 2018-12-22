@@ -8,6 +8,34 @@ module.exports = (knex) => {
   //RENDER order confirm page
   router.get("/confirm", (req,res) =>{
 
+    var cart = req.cookies.cart;
+
+    let templateVars = {
+      name : cart.name,
+      phone: cart.phone,
+      foodOrder : cart.foodOrder,
+      totalPrice : cart.totalPrice
+    }
+
+    // res.render("order_confirm")
+
+
+    if(!cart){
+      res.redirect("/")
+    } else {
+
+      // let templateVars = {
+      // name : cart.name,
+      // phone: cart.phone,
+      // foodOrder : cart.foodOrder,
+      // totalPrice : cart.totalPrice
+      // }
+
+      console.log("this is template Vars food order", templateVars.foodOrder)
+      res.render("order_confirm", templateVars);
+    }
+
+
     // knex // write query that gets the join table TODO !!!
     //   .select('*')
     //   .from('orders')
@@ -19,6 +47,13 @@ module.exports = (knex) => {
 
     //       const templateVars = {
     //         order : clientOrder
+
+    // const cart = {
+    //   name : cookieCustomerObj.customerName,
+    //   phone : cookieCustomerObj.customerPhone,
+    //   foodOrder : foodOrder,
+    //   totalPrice : cookieCustomerObj.customerTotalPrice
+    // }
     //       };
 
 
@@ -26,7 +61,7 @@ module.exports = (knex) => {
       // })
       // .then((template) =>{
         //res.render("order_id", template);
-        res.send("sent to order confirmation page - EJS not ready yet");
+
       // })
       // .catch((err)=>{
       //   console.log("Error @GET order/confirm: ",err);
@@ -73,7 +108,7 @@ module.exports = (knex) => {
 
   });
 
-  //GRAB data from cookie, INSERT to DB
+  //GRAB data from main page and set basket as cookie, redirect to /confirm page
   router.post("/confirm", (req, res) => {
 
     const orderObj = (req.body);
@@ -107,7 +142,7 @@ module.exports = (knex) => {
     console.log("this is the cart object: ", cart)
 
 
-    res.redirect("/")
+    res.redirect("/order/confirm");
     // try {
       //grab data from cookie.
     //   let orderObj = req.cookies;

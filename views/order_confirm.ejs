@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Menu</title>
@@ -13,16 +13,24 @@
 
   <body>
     <h1> is this working</h1>
-    <h2> restaurant Menu </h2>
+    <h2> confirmation page </h2>
 
-    <div> <% for (foodItem of menu) {%>
-          <li> <%= foodItem.name %> </li>
-          <li> <%= foodItem.price %> </li>
+    <div  id ="basket">
+      <p> name: <%= name %>  </p>
+      <p> phone: <%= phone %>  </p>
+      <% for (item of foodOrder){ %>
+        <div class=item>
 
-       <% } %>
+          <%=foodOrder[item]%>
+         <p> <%= item.name %> <p>
+         <p> <%= item.quantity %> <p>
+         <p> <%= item.price %> <p>
 
+        <div>
+      <% } %>
+      <p> <%= totalPrice %> </p>
     </div>
-
   </body>
 </html>
- -->
+
+
