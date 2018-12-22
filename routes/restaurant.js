@@ -64,6 +64,7 @@ module.exports = (knex) => {
   //Send SMS with prep time
   router.post("/summary", (req, res) => {
     try{
+
       let orderId = req.body.sms_orderid;
       let prepTime = req.body.prep_time
       let orderUpdate = {
@@ -71,12 +72,25 @@ module.exports = (knex) => {
         prep_time: prepTime
       };
 
-      client.messages.create(
-      {
-        body: `Your order (#${orderId}) will be complete in ${prepTime} minutes.`,
-        from: '+16475594746',
-        to: '+16475049239'
-      }).then(message => console.log(message.sid)).done();
+      //SQL query to get client info with the order.
+      //SELECT name,phone_number,orderid FROM orders JOIN clients ON clients.clientid=orders.clientid
+      knex('orders').select('name','phone_number','orderid')
+        .join('clients','clients.clientid','=','orders.clientid')
+        .where('orderid', '=', orderId)
+        .then( (results) => {
+
+          let phone = "+1"+ results[0].phone_number;
+
+          client.messages.create(
+          {
+            body: `Hi ${results[0].name}, your order (#${orderId}) will be complete in ${prepTime} minutes.`,
+            from: '+16475594746',
+            to: phone
+          }).then(message => console.log(message.sid)).done();
+
+        })
+
+
 
       //Set the order as 'completed' so sms is sent
       knex('orders').where('orderid', '=', orderId).update(orderUpdate)

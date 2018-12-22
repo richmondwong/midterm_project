@@ -6,7 +6,7 @@ $(document).ready(function(){
     let smsFlag = $('.sms_sent');
 
     smsFlag.each( (x) => {
-      console.log("sms flag:", $(smsFlag[x]).val());
+      //console.log("sms flag:", $(smsFlag[x]).val());
       if (!$(smsFlag[x]).val()){
         $(smsFlag[x]).parent().removeClass('hide');
       }
