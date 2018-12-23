@@ -73,6 +73,7 @@ function renderBasket(basket){
 
   let total= calculateTotalPrice(basket);
   $("#food_cart").append(total)
+  console.log("This is thte total being calculated")
   $("#client_details").append(`<input type="hidden" name="food_basket_total" value="${total}">`)
 
   // const newHiddenObject = addObject(basket);
@@ -132,6 +133,15 @@ function renderBasket(basket){
 
 
   });
+
+
+  $("#order_heading").hide();
+  $("#input_info_container").hide();
+
+  $(".order_button").on("click", function () {
+    $("#order_heading").show();
+    $("#input_info_container").show();
+  })
 
 
 

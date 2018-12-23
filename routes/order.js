@@ -186,6 +186,7 @@ module.exports = (knex) => {
 
 
   router.post("/send", (req, res) => {
+
     var phoneVar = "Dude"
 
     // client.messages.create(
@@ -251,9 +252,31 @@ module.exports = (knex) => {
 
   // res.send("finished placing order")
 
+  // });
+
+
+    function foodExtractor (input) {
+
+      var foodOrderString = "";
+
+      for (var i in input.cart.foodOrder){
+        console.log("This is the name: ", req.cookies.cart.foodOrder[i]["name"])
+        var name = req.cookies.cart.foodOrder[i]["name"];
+        foodOrderString += `Item: ${name}\n`
+        console.log("This is the quantity: ", req.cookies.cart.foodOrder[i]["quantity"])
+        var quantity = req.cookies.cart.foodOrder[i]["quantity"];
+        foodOrderString += `Quantity: ${quantity}\n`
+      }
+      return foodOrderString
+      }
+
+     client.messages.create(
+      {
+        body: `\n\n Customer Name: ${req.cookies.cart.name} \n\nFood Order: \n${foodExtractor(req.cookies)} \nPhone: ${req.cookies.cart.phone} \n\nTotal Price: $${req.cookies.cart.totalPrice}`,
+        from: '+16475594746',
+        to: '+14167958562'
+      }).then(message => console.log(message.sid)).done(console.log());
   });
-
-
 
  return router;
 }
