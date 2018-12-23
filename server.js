@@ -47,7 +47,10 @@ app.use("/restaurant", restaurantRoutes(knex));
 // Home page
 app.get("/", (req, res) => {
 // knex querie3 to db to return menu items and render them on homepage
-  knex
+  var cart = req.cookies.cart;
+
+  if(!cart){
+    knex
     .select("*")
     .from("foods")
     .then((results) => {
@@ -56,7 +59,8 @@ app.get("/", (req, res) => {
       // console.log("this is the menu from knex query: ", menu);
 
       const templateVars = {
-        menu: menu
+        menu: menu,
+        cookie: false
       };
 
       return templateVars;
@@ -64,11 +68,40 @@ app.get("/", (req, res) => {
     })
     .then((template) =>{
       res.render("index", template);
-      console.log("this is the cookie that has been set!: ", req.cookies.cart)
     })
     .catch((err)=>{
       console.log("Error @GET / : ", err)
     })
+  } else {
+    knex
+    .select("*")
+    .from("foods")
+    .then((results) => {
+      const menu = results;
+
+      // console.log("this is the menu from knex query: ", menu);
+
+      const templateVars = {
+        menu: menu,
+        cookie: true,
+        cartCookie: {
+           name : cart.name,
+           phone: cart.phone,
+           foodOrder : cart.foodOrder,
+           totalPrice : cart.totalPrice
+        }
+      };
+
+      return templateVars;
+
+    })
+    .then((template) =>{
+      res.render("index", template);
+    })
+    .catch((err)=>{
+      console.log("Error @GET / : ", err)
+    })
+  }
 
 });
 
