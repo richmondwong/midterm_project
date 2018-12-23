@@ -1,9 +1,8 @@
 body {
   background-color: #EEE;
-  font-family: 'Permanent Marker', cursive;
 
   h1 {
-    color: #244751;
+    /*color: #244751;*/
   }
 }
 
@@ -38,6 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #FFCF9B!important;
+  border-radius: 7px;
 }
 
 h1.display-4 {
@@ -63,19 +63,30 @@ p.lead{
 
 .menu_container {
   border: solid;
+  border-radius: 5px;
+  background-color: #FFCF9B
 }
 
-.testFoodObject {
+.food_object_overall_container {
+  display: flex;
+  justify-content: center;
+}
+
+.food_object_container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
  /* flex-direction: column;*/
   width: 800px;
   border: solid;
+  background-color: white;
+  border-radius: 7px;
 }
 
 .card {
   margin: 20px;
+  border: solid;
+  border-width: 10px!important;
 }
 
 #basket {
@@ -100,7 +111,38 @@ p.lead{
   flex-direction: column;
 }
 
-#input_info_container {
+#input_info_overall_container {
   display: flex;
   justify-content: center;
+  border: solid;
+  border-color: green;
+}
+
+#input_info_container {
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+  border: dotted;
+}
+
+
+#food_submit_button {
+  margin-left: 20px;
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
 }

@@ -83,8 +83,8 @@
 
 
 
-
-<div class="testFoodObject">
+<div class="food_object_overall_container">
+<div class="food_object_container">
   <% for (foodItem of menu) {%>
 
   <div class="card" style="width: 18rem;">
@@ -102,12 +102,10 @@
 </div>
 <% } %>
 </div>
+</div>
 
 
-
-
-
-     <!-- <div class = "food_object">
+    <!-- <div class = "food_object">
 
       <% for (foodItem of menu) {%>
           <li> <%= foodItem.foodid %> </li>
@@ -129,7 +127,8 @@
       </div>
     </div>
 
-  <div id="input_info_container">
+  <div id="input_info_overall_container">
+    <div id="input_info_container">
   <form action="/order/confirm" method="POST">
      <input type="text" name="customer_name" placeholder="Your Name"><br>
     <input type="text" name="phone_number" placeholder="Input phone #"><br>
@@ -139,10 +138,11 @@
          <input type="hidden" name="food_basket[1]" value="differnttest">
 
       </div>
-      <input type = "submit" value="confirm order">
+
+      <input type = "submit" value="Confirm Order" id="food_submit_button">
   </form>
 </div>
-
+</div>
 
 </div>
 

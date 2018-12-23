@@ -135,10 +135,12 @@ console.log(foodPrice)
   });
 
 
-  $("#order_heading").hide()
+  $("#order_heading").hide();
+  $("#input_info_container").hide();
 
   $(".order_button").on("click", function () {
     $("#order_heading").show();
+    $("#input_info_container").show();
   })
 
 

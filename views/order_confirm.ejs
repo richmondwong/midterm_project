@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 
-<html lang="en">
-  <head>
-    <title>Menu</title>
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-<html lang="en">
+  <title>Order Confirm</title>
+
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Permanent+Marker|Playfair+Display:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+ <!--  <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <link rel="stylesheet" href="/styles/order_confirm.css" type="text/css" />
+  <!--   <link rel="stylesheet" href="/styles/test.css" type="text/css" /> -->
+
+
+  <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
 
 
 
   <body>
-    <h1> is this working</h1>
-    <h2> confirmation page </h2>
 
+    <div id="page_container">
+
+      <div id="details_overall_container">
+
+    <h1 style="font-family:Permanent Marker; text-align: center; font-size: 60px;"> Confirm Your Order </h1>
+<div id="details_container">
     <div  id ="basket">
       <p> name: <%= name %>  </p>
       <p> phone: <%= phone %>  </p>
@@ -31,9 +54,16 @@
 
 
     <form action="/order/send" method="POST">
-      <input type="submit" value="Confirm Your Food Order">
+      <input id="final_order_button" type="submit" value="Click and Confirm">
     </form>
 
+    </div>
+    </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 
   </body>
