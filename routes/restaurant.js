@@ -5,6 +5,7 @@ const router  = express.Router();
 const accountSid = 'AC179754f7af01989ecab3b52a6b9755be';
 const authToken = '913da9bf2a42df203863cd3644ca928f';
 const client = require('twilio')(accountSid, authToken);
+const moment = require('moment-timezone');
 
 module.exports = (knex) => {
 
@@ -30,10 +31,11 @@ module.exports = (knex) => {
       .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
       .join('orders', 'ordersFoods.orderid', '=', 'orders.orderid')
       .join('clients', 'clients.clientid', '=', 'orders.clientid')
-      //.whereIn('orderid', orderIdArr)
+      .orderBy('orders.orderid', 'desc')
       .then( (orders) => {
 
         //create an Object {orderid: [{food data},{food data},...] }
+        console.log("orders:",orders);
         let groupedObjects = {};
         for(let i in orders) {
 
@@ -44,7 +46,7 @@ module.exports = (knex) => {
             groupedObjects[orders[i]['orderid']] = [orders[i]];
           }
         }
-        //console.log("temp:", groupedObjects);
+        console.log("temp:", groupedObjects);
         res.render("restaurant_summary", {orders:groupedObjects});
       })
       .catch((err) => {
@@ -68,10 +70,12 @@ module.exports = (knex) => {
       let orderId = req.body.sms_orderid;
       let prepTime = req.body.prep_time
 
-
+      let doneTime = moment().tz("America/Toronto").add(prepTime, 'minutes').format('hh:mm a');
+      console.log("current time:", moment().tz("America/Toronto").format('hh:mm a'));
+      console.log("complete at:", doneTime); //string type
 
       let orderUpdate = {
-        completed: 1,
+        completed: doneTime,
         prep_time: prepTime
       };
 
