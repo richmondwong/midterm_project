@@ -66,7 +66,7 @@ module.exports = (knex) => {
     try{
 
       let orderId = req.body.sms_orderid;
-      let prepTime = req.body.prep_time
+      let prepTime = req.body.prep_
 
 
 
