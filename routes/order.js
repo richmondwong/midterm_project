@@ -238,6 +238,10 @@ module.exports = (knex) => {
                .insert(arrayForDB)
                .then(res.send("finished placing order"))
              })
+          //   .then(function() {
+          //     // res.clearCookie(cart)
+          //     console.log(cart)
+          // })
           });
 
     // knex('clients').insert({name: finalCart.name, phone_number: finalCart.phone}).returning(clientid)
@@ -276,7 +280,10 @@ module.exports = (knex) => {
         from: '+16475594746',
         to: '+14167958562'
       }).then(message => console.log(message.sid)).done(console.log());
+
   });
+
+
 
  return router;
 }
