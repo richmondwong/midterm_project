@@ -1,37 +1,85 @@
+
 <!DOCTYPE html>
-<html>
+
 <head>
+
+  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+  <title>Thank You For Your Order</title>
+
+
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Permanent+Marker|Playfair+Display:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+ <!--  <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <link rel="stylesheet" href="/styles/order_final.css" type="text/css" />
+  <!--   <link rel="stylesheet" href="/styles/test.css" type="text/css" /> -->
 
-  <title>Thank you for your order</title>
+
+  <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
-<body>
-  <div class="final_order">
-    <p> name: <%= name %>  </p>
-    <p> phone: <%= phone %>  </p>
+
+
+
+
+  <body>
+
+    <div id="page_container">
+
+      <div id="details_overall_container">
+
+    <h1 style="font-family:Permanent Marker; text-align: center; font-size: 60px;"> Your Order Has Been Recieved </h1>
+<div id="details_container">
+    <div  id ="basket_overall_container">
+      <div id="basket">
+
+
+         <p><b>Name:</b> <%= name %>  </p>
+    <p><b>Phone:</b> <%= phone %>  </p>
     <ol>
       <% for (item of foodOrder){ %>
         <li class="item">
 
-          <span> Item: <%= item.name %> ,</span>
-          <span> Quantity: <%= item.quantity %> ,</span>
-          <span> Price: $<%= item.price %>/ea </span>
+          <span><b>Item:</b> <%= item.name %>,</span>
+          <span>Quantity:</span> <%= item.quantity %>,</span>
+          <span>Price: $<%= item.price %>/ea </span>
 
         </li>
       <% } %>
     </ol>
 
-    <p> Total Price: $<%= totalPrice %> </p>
-    <form method="GET" action="/">
-      <button>DONE</button>
-    </form>
+    <p><b>YOUR GRAND TOTAL:</b> $<%= totalPrice %> </p>
 
+    <div id="button_container">
+    <form method="GET" action="/">
+      <button id ="back_to_homepage_button">Back to Homepage</button>
+    </form>
   </div>
 
 
-</body>
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+  </body>
+
 </html>
+
+
+
