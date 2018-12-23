@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Permanent+Marker|Playfair+Display:400,700" rel="stylesheet">
+
+  <title>Thank you for your order</title>
+</head>
+<body>
+  <div class="final_order">
+    <p> name: <%= name %>  </p>
+    <p> phone: <%= phone %>  </p>
+    <ol>
+      <% for (item of foodOrder){ %>
+        <li class="item">
+
+          <span> Item: <%= item.name %> ,</span>
+          <span> Quantity: <%= item.quantity %> ,</span>
+          <span> Price: $<%= item.price %>/ea </span>
+
+        </li>
+      <% } %>
+    </ol>
+
+    <p> Total Price: $<%= totalPrice %> </p>
+    <form method="GET" action="/">
+      <button>DONE</button>
+    </form>
+
+  </div>
+
+
+</body>
+</html>
