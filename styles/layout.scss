@@ -122,12 +122,16 @@ p.lead{
   display: flex;
   flex-direction: column;
   /*justify-content: center;*/
-  border: dotted;
+ /* border: dotted;*/
+  width: 60%;
 }
 
+.input-group-text-mobile {
+  padding-right: 20px!important;
+}
 
 #food_submit_button {
-  margin-left: 20px;
+  margin-left: 180px;
   color: #fff;
   background-color: #28a745;
   border-color: #28a745;
