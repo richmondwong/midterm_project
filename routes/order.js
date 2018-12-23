@@ -262,12 +262,12 @@ module.exports = (knex) => {
     }
 
 
-    // client.messages.create(
-    //   {
-    //     body: `\n\n Customer Name: ${req.cookies.cart.name} \n\nFood Order: \n${foodExtractor(req.cookies)} \nPhone: ${req.cookies.cart.phone} \n\nTotal Price: $${req.cookies.cart.totalPrice}`,
-    //     from: '+16475594746',
-    //     to: '+14167958562'
-    //   }).then(message => console.log(message.sid)).done();
+    client.messages.create(
+      {
+        body: `\n\n Customer Name: ${req.cookies.cart.name} \n\nFood Order: \n${foodExtractor(req.cookies)} \nPhone: ${req.cookies.cart.phone} \n\nTotal Price: $${req.cookies.cart.totalPrice}`,
+        from: '+16475594746',
+        to: '+14167958562'
+      }).then(message => console.log(message.sid)).done();
 
   });
 
@@ -301,7 +301,6 @@ module.exports = (knex) => {
   //RENDER the final page after customer confirms their order.
   router.get("/final", (req, res) => {
 
-
       try {
         //console.log("grabbing cookie data");
         let cart = getCart(req);
@@ -317,9 +316,6 @@ module.exports = (knex) => {
       } catch (err) {
         console.log("Error @Get final:", err);
       }
-
-
-
 
   });
 
