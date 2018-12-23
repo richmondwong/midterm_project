@@ -65,16 +65,7 @@ module.exports = (knex) => {
       // })
   })
 
-  //RENDER Final orders page - confirm restaurant recived order.
-  router.get("/final", (req,res)=>{
-    try {
-      //res.render("order_confirm");
-      res.send("sent to order final page - ejs not ready");
-    } catch (err){
-      console.log("Error @GET order/final:", err);
-    }
 
-  })
 
   //GRAB data from cookie and send to confirmation page
   // router.post("/", (req, res) => {
@@ -221,7 +212,7 @@ module.exports = (knex) => {
 
 
 
-// knex('movies').insert({title: 'Shawshank Redemption', year: '2014'}).returning('*')
+    // knex('movies').insert({title: 'Shawshank Redemption', year: '2014'}).returning('*')
     knex("clients")
       .insert({name: finalCart.name, phone_number: finalCart.phone})
       .returning('clientid')
@@ -236,9 +227,9 @@ module.exports = (knex) => {
 
               knex('ordersFoods')
                .insert(arrayForDB)
-               .then(res.send("finished placing order"))
-             })
-          });
+               .then(res.redirect("/order/final"))
+            })
+      });
 
     // knex('clients').insert({name: finalCart.name, phone_number: finalCart.phone}).returning(clientid)
 
@@ -268,17 +259,72 @@ module.exports = (knex) => {
         foodOrderString += `Quantity: ${quantity}\n`
       }
       return foodOrderString
-      }
+    }
 
-     client.messages.create(
-      {
-        body: `\n\n Customer Name: ${req.cookies.cart.name} \n\nFood Order: \n${foodExtractor(req.cookies)} \nPhone: ${req.cookies.cart.phone} \n\nTotal Price: $${req.cookies.cart.totalPrice}`,
-        from: '+16475594746',
-        to: '+14167958562'
-      }).then(message => console.log(message.sid)).done(console.log());
+
+    // client.messages.create(
+    //   {
+    //     body: `\n\n Customer Name: ${req.cookies.cart.name} \n\nFood Order: \n${foodExtractor(req.cookies)} \nPhone: ${req.cookies.cart.phone} \n\nTotal Price: $${req.cookies.cart.totalPrice}`,
+    //     from: '+16475594746',
+    //     to: '+14167958562'
+    //   }).then(message => console.log(message.sid)).done();
+
   });
 
- return router;
+
+  //HELPER function to get cart data from cookie and return cart data in an object w/ structure:
+  // { name         : 'Stan3',
+  //   phone        : '4168763021',
+  //   foodOrder    :
+  //                  [ { id: 73, name: 'pepperoni pizza', price: 15.99, quantity: 2 },
+  //                    { id: 74, name: 'salmon sashimi', price: '3.50', quantity: 1 } ],
+  //   totalPrice   : '35.48' }
+  function getCart(req){
+
+    let cart = req.cookies.cart;
+    if (!cart){
+      return (false);
+    }
+    else {
+      let finalCart = {
+        name : cart.name,
+        phone: cart.phone,
+        foodOrder : cart.foodOrder,
+        totalPrice : cart.totalPrice
+      }
+      return (finalCart);
+    }
+
+  }
+
+  //RENDER the final page after customer confirms their order.
+  router.get("/final", (req, res) => {
+
+
+      try {
+        console.log("grabbing cookie data");
+        let cart = getCart(req);
+
+        if(!cart){
+          res.redirect("/")
+        }
+        else {
+          console.log("Final Cart: ", cart);
+          res.clearCookie('cart');
+          res.render("order_final", cart);
+        }
+      } catch (err) {
+        console.log("Error @Get final:", err);
+      }
+
+
+
+
+  });
+
+
+
+  return router;
 }
 
 
