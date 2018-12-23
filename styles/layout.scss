@@ -77,3 +77,30 @@ p.lead{
 .card {
   margin: 20px;
 }
+
+#basket {
+  border: solid;
+  border-color: red;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+}
+
+#food_cart_container {
+  border: solid;
+  border-color: yellow;
+  display: flex;
+  justify-content: center;
+}
+
+#food_cart {
+  border: solid;
+  border-color: blue;
+  display: flex;
+  flex-direction: column;
+}
+
+#input_info_container {
+  display: flex;
+  justify-content: center;
+}

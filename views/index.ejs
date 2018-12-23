@@ -96,8 +96,8 @@
   <div class="card-body">
     <h5 class="card-title"><%= foodItem.name %></h5>
     <p class="card-text"><%= foodItem.price %> </p>
-    <button type="button" class="add_to_cart btn btn-success" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>">Add</button>
-    <button type="button" class="minus_from_cart btn btn-danger" data-food-id="<%= foodItem.foodid %>">Remove</button>
+    <button type="button" class="add_to_cart btn btn-success order_button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>">Add</button>
+    <button type="button" class="minus_from_cart btn btn-danger order_button" data-food-id="<%= foodItem.foodid %>">Remove</button>
   </div>
 </div>
 <% } %>
@@ -107,7 +107,7 @@
 
 
 
-     <div class = "food_object">
+     <!-- <div class = "food_object">
 
       <% for (foodItem of menu) {%>
           <li> <%= foodItem.foodid %> </li>
@@ -116,22 +116,20 @@
           <li><button class="add_to_cart" type="button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>"> PLUS </button></li>
            <li><button class="minus_from_cart" type="button" data-food-id="<%= foodItem.foodid %>" > MINUS </button></li>
        <% } %>
-    </div>
+    </div> -->
 
-    <br>
-    <br>
-<p> this is the interactive food cart</p>
+
+<h2 id="order_heading" style="font-family:Permanent Marker; text-align: center; font-size: 60px;"> Your Order</h2>
 
 
   <div id="basket">
 
+    <div id ="food_cart_container">
       <div id="food_cart">
-
-
-
-
-
       </div>
+    </div>
+
+  <div id="input_info_container">
   <form action="/order/confirm" method="POST">
      <input type="text" name="customer_name" placeholder="Your Name"><br>
     <input type="text" name="phone_number" placeholder="Input phone #"><br>
@@ -143,6 +141,7 @@
       </div>
       <input type = "submit" value="confirm order">
   </form>
+</div>
 
 
 </div>

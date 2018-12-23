@@ -135,6 +135,13 @@ console.log(foodPrice)
   });
 
 
+  $("#order_heading").hide()
+
+  $(".order_button").on("click", function () {
+    $("#order_heading").show();
+  })
+
+
 
 
 });
