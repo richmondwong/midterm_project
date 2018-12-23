@@ -173,21 +173,21 @@
 
          <div id="input_info_overall_container">
     <div id="input_info_container">
-  <form action="/order/confirm" method="POST">
+  <form action="/order/confirm" method="POST" required>
   <!--    <input type="text" name="customer_name" placeholder="Your Name"><br> -->
 
     <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text">Your Name</span>
     </div>
-      <input type="text" name="customer_name" class="form-control">
+      <input type="text" name="customer_name" class="form-control" required>
     </div>
 
     <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text">Mobile No.</span>
     </div>
-      <input type="text" name="phone_number" class="form-control">
+      <input type="text" name="phone_number" class="form-control" required>
     </div>
 
    <!--  <input type="text" name="phone_number" placeholder="Input phone #"><br> -->
@@ -198,7 +198,7 @@
          <input type="hidden" name="food_basket[1]" value="differnttest">
       </div>
 
-      <input type = "submit" value="Confirm Order" id="food_submit_button">
+      <input type = "submit" value="Confirm Order" id="food_submit_button" required>
   </form>
 
 </div>

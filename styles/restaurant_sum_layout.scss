@@ -4,20 +4,48 @@
 
 }*/
 
+.main_container {
+  display: flex;
+  justify-content: center;
+  /*border-radius: 7px;*/
+}
+
+.sub_main_container {
+  border: solid;
+  margin-top: 40px;
+  width: 80%;
+  border-radius: 7px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.summary_items_overall_container {
+  margin-top: 40px;
+}
+
 .summary_text {
   font-size: 50px;
   /*border: solid;*/
 }
 
+.sub_main_container {
+  background-color: #FFCF9B
+}
+
 .jumbotron {
-  width: 50%;
-  background-color: #FFAD0D!important;
+  width: 60%;
+  background-color: #FFCF9B!important;
+  border-radius: 7px;
 }
 
 .jumbo_container {
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   border: solid;
+  border-radius: 7px;
+  background-color: white;
+
 /*  border-color: red;*/
 }
 
