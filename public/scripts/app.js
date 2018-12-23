@@ -90,8 +90,6 @@ function renderBasket(basket){
      let foodPrice = checkType($(this).data('food-price'));
      let foodId = $(this).data('food-id')
 
-console.log(foodPrice)
-
     if (foodId in basket){
         basket[foodId].quantity += 1;
     } else {
@@ -103,7 +101,8 @@ console.log(foodPrice)
         }
     }
 
-    console.log(basket);
+    var element = document.getElementById(food_cart);
+    console.log("this is the new food_cart: ", element );
     renderBasket(basket)
 
 

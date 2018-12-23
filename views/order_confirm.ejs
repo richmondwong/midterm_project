@@ -19,7 +19,7 @@
       <% for (item of foodOrder){ %>
         <div class=item>
 
-          <%=foodOrder[item]%>
+          <!-- <%=foodOrder[item]%> -->
          <p> <%= item.name %> <p>
          <p> <%= item.quantity %> <p>
          <p> <%= item.price %> <p>
@@ -33,6 +33,8 @@
     <form action="/order/send" method="POST">
       <input type="submit" value="Confirm Your Food Order">
     </form>
+
+    <a href="/"> Click here to edit order </a>
 
 
 

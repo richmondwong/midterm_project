@@ -162,21 +162,51 @@
       <div id="food_cart">
 
 
+          <% if (cookie) { %>
+            <% for (item of cartCookie.foodOrder) { %>
+              <div class="food_item">
+                <div class="id"> <%= item.id %> </div>
+                <div class="name"> <%= item.name %> </div>
+                <div class="price"> <%= item.price %> </div>
+                <div class="quantity"> <%= item.quantity %> </div>
+              </div>
+             <% } %>
 
+          <p> <%= cartCookie.totalPrice %> </p>
+          <% } %>
 
+       </div>
 
-      </div>
-  <form action="/order/confirm" method="POST">
-     <input type="text" name="customer_name" placeholder="Your Name"><br>
-    <input type="text" name="phone_number" placeholder="Input phone #"><br>
+       <% if (cookie) { %>
 
-      <div id="client_details">
-         <input type="hidden" name="food_basket_names[0]" value="testing">
-         <input type="hidden" name="food_basket[1]" value="differnttest">
+        <form action="/order/confirm" method="POST">
+          <input type="text" name="customer_name" value="<%=cartCookie.name%>"><br>
+          <input type="text" name="phone_number" value="<%=cartCookie.phone%>"><br>
 
-      </div>
-      <input type = "submit" value="confirm order">
-  </form>
+            <div id="client_details">
+               <input type="hidden" name="food_basket_names[0]" value="testing">
+               <input type="hidden" name="food_basket[1]" value="differnttest">
+
+            </div>
+            <input type = "submit" value="confirm order">
+        </form>
+
+      <% } else { %>
+
+       <form action="/order/confirm" method="POST">
+          <input type="text" name="customer_name" placeholder="Your Name"><br>
+          <input type="text" name="phone_number" placeholder="Input phone #"><br>
+
+            <div id="client_details">
+               <input type="hidden" name="food_basket_names[0]" value="testing">
+               <input type="hidden" name="food_basket[1]" value="differnttest">
+
+            </div>
+            <input type = "submit" value="confirm order">
+       </form>
+
+      <% } %>
+
 
 
 
