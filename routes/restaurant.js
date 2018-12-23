@@ -5,7 +5,7 @@ const router  = express.Router();
 const accountSid = 'AC179754f7af01989ecab3b52a6b9755be';
 const authToken = '913da9bf2a42df203863cd3644ca928f';
 const client = require('twilio')(accountSid, authToken);
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 module.exports = (knex) => {
 
@@ -69,12 +69,12 @@ module.exports = (knex) => {
       let orderId = req.body.sms_orderid;
       let prepTime = req.body.prep_time
 
-      let doneTime = moment().add(prepTime, 'minutes').calendar();
-      console.log("current time:", moment().format('hh:mm a'));
-      console.log("complete at:", doneTime);
+      let doneTime = moment().tz("America/Toronto").add(prepTime, 'minutes').format('hh:mm a');
+      console.log("current time:", moment().tz("America/Toronto").format('hh:mm a'));
+      console.log("complete at:", doneTime); //string type
 
       let orderUpdate = {
-        completed: 1,
+        completed: doneTime,
         prep_time: prepTime
       };
 
@@ -87,12 +87,12 @@ module.exports = (knex) => {
 
           let phone = "+1"+ results[0].phone_number;
 
-          // client.messages.create(
-          // {
-          //   body: `Hi ${results[0].name}, your order (#${orderId}) will be ready for pick up in ${prepTime} minutes.`,
-          //   from: '+16475594746',
-          //   to: phone
-          // }).then(message => console.log(message.sid)).done();
+          client.messages.create(
+          {
+            body: `Hi ${results[0].name}, your order (#${orderId}) will be ready for pick up in ${prepTime} minutes.`,
+            from: '+16475594746',
+            to: phone
+          }).then(message => console.log(message.sid)).done();
 
         })
 

@@ -59,6 +59,8 @@
               <input class="sms_orderid" type="hidden" name="sms_orderid" value= <%= orderid %> >
               <button class="prep_btn">Send SMS</button>
             </form>
+
+            <p class="comp_time"> Order to be complete by: <%= orders[orderid][0]['completed'] %></p>
             <!-- <button type="button" class="btn btn-danger">Delete Order</button> -->
           </div>
         </div>

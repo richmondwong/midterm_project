@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-  //hide sms input box if the sms has already been sent.
-  function hideCompSms() {
+  //Show sms input box if the SMS has NOT been sent yet.
+  function showCompSms() {
 
     let smsFlag = $('.sms_sent');
 
@@ -9,9 +9,10 @@ $(document).ready(function(){
       //console.log("sms flag:", $(smsFlag[x]).val());
       if (!$(smsFlag[x]).val()){
         $(smsFlag[x]).parent().removeClass('hide');
+        $(smsFlag[x]).parent().siblings('.comp_time').addClass('hide');
       }
     })
   }
 
-  hideCompSms();
+  showCompSms();
 })
