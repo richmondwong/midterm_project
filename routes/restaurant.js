@@ -31,10 +31,11 @@ module.exports = (knex) => {
       .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
       .join('orders', 'ordersFoods.orderid', '=', 'orders.orderid')
       .join('clients', 'clients.clientid', '=', 'orders.clientid')
-      //.whereIn('orderid', orderIdArr)
+      .orderBy('orders.orderid', 'desc')
       .then( (orders) => {
 
         //create an Object {orderid: [{food data},{food data},...] }
+        console.log("orders:",orders);
         let groupedObjects = {};
         for(let i in orders) {
 
@@ -45,7 +46,7 @@ module.exports = (knex) => {
             groupedObjects[orders[i]['orderid']] = [orders[i]];
           }
         }
-        //console.log("temp:", groupedObjects);
+        console.log("temp:", groupedObjects);
         res.render("restaurant_summary", {orders:groupedObjects});
       })
       .catch((err) => {
