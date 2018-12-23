@@ -286,6 +286,7 @@ module.exports = (knex) => {
       return (false);
     }
     else {
+      //console.log("cookie: ", cart);
       let finalCart = {
         name : cart.name,
         phone: cart.phone,
@@ -302,14 +303,14 @@ module.exports = (knex) => {
 
 
       try {
-        console.log("grabbing cookie data");
+        //console.log("grabbing cookie data");
         let cart = getCart(req);
 
         if(!cart){
           res.redirect("/")
         }
         else {
-          console.log("Final Cart: ", cart);
+          //console.log("Final Cart: ", cart);
           res.clearCookie('cart');
           res.render("order_final", cart);
         }
