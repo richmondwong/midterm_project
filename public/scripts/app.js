@@ -11,7 +11,7 @@
 
 // remember AJAX should be used for single page stuff (think tweeter) and is called in the server.js file
 
-var basket = {}
+let basket = {}
 
 $(document).ready(function(){
 // jquery to send to cart if add to car button
@@ -23,6 +23,23 @@ function checkType(price){
   }
   return numberPrice
 }
+
+
+
+// $(".edit").click(function(event){
+//   event.preventDefault();
+
+//   // $.get( '/', function (data){
+//   //         console.log("this is the data from ajax: ", data)
+//   //     })
+
+
+// })
+
+
+
+
+
 
 function calculateTotalPrice(basket){
 
@@ -133,6 +150,47 @@ function renderBasket(basket){
 
 
   });
+
+
+   $(".edit").click(function(event){
+  // event.preventDefault();
+    const test = "this is a test is it working?"
+
+    $('.item').each(function(){
+     let foodName = $(this).data('name');
+     let foodPrice = checkType($(this).data('price'));
+     let foodId = $(this).data('id');
+     let foodQuantity = $(this).data('quantity');
+
+       basket[foodId]= {
+          id: foodId,
+          name: foodName,
+          price: foodPrice,
+          quantity: foodQuantity
+        }
+
+      })
+
+    $('#basket').append(test)
+
+    // alert("going back")
+
+    // $.ajax({
+    //   method: "POST",
+    //   url: "/",
+    //   data: basket
+    // }).done((data) => {
+    //   renderBasket(data)
+    // });;
+
+  // var newBasket = renderBasket(basket)
+
+  // $('#food_cart').append(newBasket)
+
+
+})
+
+   console.log("checking to see whats in the basket?", basket)
 
 
   $("#order_heading").hide();

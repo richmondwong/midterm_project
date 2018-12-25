@@ -36,21 +36,23 @@
 
     <h1 style="font-family:Permanent Marker; text-align: center; font-size: 60px;"> Confirm Your Order </h1>
 <div id="details_container">
-    <div  id ="basket">
+
       <p> name: <%= name %>  </p>
       <p> phone: <%= phone %>  </p>
+     <div  id ="basket">
       <% for (item of foodOrder){ %>
-        <div class=item>
+        <div class=item data-id="<%= item.id %>" data-price="<%= item.price %>" data-quantity="<%= item.quantity %>" data-name="<%= item.name %>">
 
-          <!-- <%=foodOrder[item]%> -->
+         <p> <%= item.id %> <p>
          <p> <%= item.name %> <p>
          <p> <%= item.quantity %> <p>
          <p> <%= item.price %> <p>
 
-        <div>
+        </div>
       <% } %>
+     </div>
       <p> <%= totalPrice %> </p>
-    </div>
+
 
 
     <form action="/order/send" method="POST">
@@ -58,7 +60,7 @@
     </form>
 
 
-    <a href="/"> Click here to edit order </a>
+    <a href="/" class="edit"> Click here to edit order </a> <!-- set up a get AJAX request -->
 
 
     </div>
@@ -68,7 +70,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
->>>>>>> style_cleanup
 
 
   </body>

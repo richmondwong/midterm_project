@@ -125,9 +125,7 @@
     <div id ="food_cart_container">
       <div id="food_cart">
 
-
-
-          <% if (cookie) { %>
+               <% if (cookie) { %>
             <% for (item of cartCookie.foodOrder) { %>
               <div class="food_item">
                 <div class="id"> <%= item.id %> </div>
@@ -138,7 +136,17 @@
              <% } %>
 
           <p> <%= cartCookie.totalPrice %> </p>
+
+        <!--     <script>
+
+              renderBasket(basket)
+
+            </script> -->
+
           <% } %>
+
+
+
 
        </div>
 
