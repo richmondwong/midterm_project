@@ -119,8 +119,8 @@ function renderBasket(basket){
         }
     }
 
-    var element = document.getElementById(food_cart);
-    console.log("this is the new food_cart: ", element );
+    // var element = document.getElementById(food_cart);
+    console.log("this is the new basket when add: ", basket);
     renderBasket(basket)
 
 
@@ -145,16 +145,16 @@ function renderBasket(basket){
        console.log("minus 1!")
      }
     }
-    console.log(basket);
+    console.log("this is the new basket when minus; ", basket);
     renderBasket(basket)
 
 
   });
 
 
-   $(".edit").click(function(event){
-  // event.preventDefault();
-    const test = "this is a test is it working?"
+   $("#food_cart").hover(function(event){
+     event.preventDefault();
+    // const test = "this is a test is it working?"
 
     $('.item').each(function(){
      let foodName = $(this).data('name');
@@ -171,16 +171,58 @@ function renderBasket(basket){
 
       })
 
-    $('#basket').append(test)
+    console.log("this is the new basket from hover; ", basket)
+    renderBasket(basket)
+  })
+
+   //  const JSONbasket = JSON.stringify(basket)
+
+   //     $(() => {
+   //        $.ajax({
+   //          method: "POST",
+   //          url: "/",
+   //          data: JSONbasket,
+   //          success: function(data){
+   //            console.log("this is the data ", datas);
+   //            const newBasket = JSON.parse(response)
+   //            renderBasket(newBasket)
+   //          },
+   //          error: function(error){
+   //            console.log("this is not working,", error)
+   //          }
+   //        })
+   //      })
+
+
+
+
+    // $.ajax({
+    //   type: 'POST',
+    //   url:'/',
+    //   data: basket,
+    //   contentType: 'application/json',
+    //   dataType: 'json',
+    //   processdata: true,
+    //   success: function(response){
+    //     console.log("this is the resonse", response)
+    //     renderBasket(response)
+    //   },
+    //   error: function(error){
+    //     console.log("this is not working,", error)
+    //   }
+    // });
+
+    // console.log("this is the new basket when edit clicked: ", basket )
 
     // alert("going back")
 
     // $.ajax({
     //   method: "POST",
-    //   url: "/",
-    //   data: basket
+    //   url: "http:localhost:8080/",
+    //   data: basket,
+    //   dataType: 'json',
     // }).done((data) => {
-    //   renderBasket(data)
+    //   renderBasket(basket)
     // });;
 
   // var newBasket = renderBasket(basket)
@@ -188,7 +230,7 @@ function renderBasket(basket){
   // $('#food_cart').append(newBasket)
 
 
-})
+
 
    console.log("checking to see whats in the basket?", basket)
 

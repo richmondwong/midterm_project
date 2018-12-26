@@ -119,15 +119,15 @@
 
 <h2 id="order_heading" style="font-family:Permanent Marker; text-align: center; font-size: 60px;"> Your Order</h2>
 
-
+<div class ="testdiv"> <h1> THIS IS THE TEST DIV </h1></div>
   <div id="basket">
 
     <div id ="food_cart_container">
       <div id="food_cart">
 
-               <% if (cookie) { %>
+              <% if (cookie) { %>
             <% for (item of cartCookie.foodOrder) { %>
-              <div class="food_item">
+             <div class=item data-id="<%= item.id %>" data-price="<%= item.price %>" data-quantity="<%= item.quantity %>" data-name="<%= item.name %>">
                 <div class="id"> <%= item.id %> </div>
                 <div class="name"> <%= item.name %> </div>
                 <div class="price"> <%= item.price %> </div>
@@ -227,7 +227,7 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
