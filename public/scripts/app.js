@@ -152,7 +152,7 @@ function renderBasket(basket){
   });
 
 
-   $("#food_cart").hover(function(event){
+   $(".page_container").hover(function(event){
      event.preventDefault();
     // const test = "this is a test is it working?"
 
