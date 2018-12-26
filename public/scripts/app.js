@@ -15,15 +15,28 @@ let basket = {}
 
 $(document).ready(function(){
 // jquery to send to cart if add to car button
+
+//checkType converts value to string - double check to make sure this doesnt interfere with the db
 function checkType(price){
-  if (typeof price === 'string'){
-    var numberPrice = parseFloat(price).toFixed(2);
-  } else {
-    var numberPrice = price;
-  }
-  return numberPrice
+
+  // function roundN(num,n){
+  // return parseFloat(Math.round(price * Math.pow(10, n)) /Math.pow(10,n)).toFixed(n);
+  // }
+
+  var numberPrice = Number(price).toFixed(2);
+
+  // Number(Math.round(price +'e'+ 2) +'e-'+ 2).toFixed(2)
+
+  // parseFloat(Math.round(price * Math.pow(10, 2)) /Math.pow(10,2)).toFixed(2)
+
+
+  // parseFloat(price).toFixed(2);
+  //parseFloat(Math.round(price * 100) / 100).toFixed(2)
+  return numberPrice;
 }
 
+
+;
 
 
 // $(".edit").click(function(event){
@@ -120,7 +133,8 @@ function renderBasket(basket){
     }
 
     // var element = document.getElementById(food_cart);
-    console.log("this is the new basket when add: ", basket);
+    console.log("this is the price price: ", foodPrice);
+      console.log("this is the price type", typeof foodPrice)
     renderBasket(basket)
 
 
@@ -162,6 +176,9 @@ function renderBasket(basket){
      let foodId = $(this).data('id');
      let foodQuantity = $(this).data('quantity');
 
+     console.log("this is the food price ", foodPrice)
+     console.log("this is the price type", typeof foodPrice)
+
        basket[foodId]= {
           id: foodId,
           name: foodName,
@@ -171,7 +188,7 @@ function renderBasket(basket){
 
       })
 
-    console.log("this is the new basket from hover; ", basket)
+    // console.log("this is the new basket from hover; ", basket)
     renderBasket(basket)
   })
 
@@ -232,7 +249,7 @@ function renderBasket(basket){
 
 
 
-   console.log("checking to see whats in the basket?", basket)
+   // console.log("checking to see whats in the basket?", basket)
 
 
   $("#order_heading").hide();
