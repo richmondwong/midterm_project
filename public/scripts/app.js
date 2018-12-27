@@ -265,7 +265,10 @@ function renderBasket(basket){
 
   // $("#order_heading").hide();
   // $("#input_info_container").hide();
+<<<<<<< HEAD
   // $("#food_cart").hide();
+=======
+>>>>>>> feature/time_done
 
   // $(".order_button").on("click", function () {
   //   $("#order_heading").show();
