@@ -194,6 +194,15 @@ function renderBasket(basket){
     renderBasket(basket)
   })
 
+
+
+//attempt at preppending order in restauratn page
+
+  // $(".prep_btn")on("click", function(){
+
+  //   $(".jumbo_individual_container")prepend(".jumbotron")
+
+  // })
    //  const JSONbasket = JSON.stringify(basket)
 
    //     $(() => {
@@ -254,8 +263,8 @@ function renderBasket(basket){
    // console.log("checking to see whats in the basket?", basket)
 
 
-  $("#order_heading").hide();
-  $("#input_info_container").hide();
+  // $("#order_heading").hide();
+  // $("#input_info_container").hide();
 
   // $(".order_button").on("click", function () {
   //   $("#order_heading").show();
