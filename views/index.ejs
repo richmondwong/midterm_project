@@ -169,7 +169,7 @@
 
        <% if (cookie) { %>
 
-        <form action="/order/confirm" method="POST">
+    <!--     <form action="/order/confirm" method="POST">
           <input type="text" name="customer_name" value="<%=cartCookie.name%>"><br>
           <input type="text" name="phone_number" value="<%=cartCookie.phone%>"><br>
 
@@ -179,12 +179,37 @@
 
             </div>
             <input type = "submit" value="confirm order">
-        </form>
+        </form> -->
+
+
+
+          <div id="input_info_overall_container_cookie">
+    <div id="input_info_container_cookie" class="shared_basket">
+  <form action="/order/confirm" method="POST" required>
+
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Your Name</span>
+    </div>
+      <input type="text" name="customer_name" class="form-control" value="<%=cartCookie.name%>" required>
+    </div>
+
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Mobile No.</span>
+    </div>
+      <input type="text" name="phone_number" class="form-control" value="<%=cartCookie.phone%>" required>
+    </div>
+ <input type = "submit" value="Confirm Order" id="food_submit_button" required>
+  </form>
+</div>
+</div>
+
 
       <% } else { %>
 
          <div id="input_info_overall_container">
-    <div id="input_info_container">
+    <div id="input_info_container" class="shared_basket">
   <form action="/order/confirm" method="POST" required>
   <!--    <input type="text" name="customer_name" placeholder="Your Name"><br> -->
 

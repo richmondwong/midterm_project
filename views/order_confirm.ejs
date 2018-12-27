@@ -55,10 +55,10 @@
          <b><p>Quantity:</b> <%= item.quantity %> <p>
          <b><p>Item Cost: </b> <%= item.price %> <p> </li>
 
-         <p> <%= item.id %> <p>
+       <!--   <p> <%= item.id %> <p>
          <p> <%= item.name %> <p>
          <p> <%= item.quantity %> <p>
-         <p> <%= item.price %> <p>
+         <p> <%= item.price %> <p> -->
 
 
         </div>
@@ -68,13 +68,7 @@
       <p><b><u>YOUR GRAND TOTAL: </b></u> <%= totalPrice %> </p>
     </div>
     </div>
-     </div>
-      <p> <%= totalPrice %> </p>
-
-
-
-
-    <div id="buttons_container">
+     <div id="buttons_container">
     <form action="/order/send" method="POST">
       <input id="final_order_button" type="submit" value="Send Order">
     </form>
@@ -82,10 +76,19 @@
     <br>
 
 
-   <a href="/" id="edit_order_button" style="text-decoration:none"> Edit Order </a>
+ <!--   <a href="/" id="edit_order_button" style="text-decoration:none"> Edit Order </a> -->
+    <a href="/" id="edit_order_button" style="text-decoration:none"> Click here to edit order </a> <!-- set up a get AJAX request -->
+
+     </div>
+     <!--  <p> <%= totalPrice %> </p> -->
+
+
+
+
+
     </div>
 
-    <a href="/" class="edit"> Click here to edit order </a> <!-- set up a get AJAX request -->
+
 
 
     </div>
