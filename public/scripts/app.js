@@ -1,72 +1,24 @@
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for(user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });;
-// });
-
-// remember AJAX should be used for single page stuff (think tweeter) and is called in the server.js file
-
-let basket = {}
+let basket = {};
 
 $(document).ready(function(){
-// jquery to send to cart if add to car button
 
-//checkType converts value to string - double check to make sure this doesnt interfere with the db
+//checkType converts value to string -  converts numbers to a string with 2 decimal places
 function checkType(price){
-
-  // function roundN(num,n){
-  // return parseFloat(Math.round(price * Math.pow(10, n)) /Math.pow(10,n)).toFixed(n);
-  // }
-
   var numberPrice = Number(price).toFixed(2);
-
-  // Number(Math.round(price +'e'+ 2) +'e-'+ 2).toFixed(2)
-
-  // parseFloat(Math.round(price * Math.pow(10, 2)) /Math.pow(10,2)).toFixed(2)
-
-
-  // parseFloat(price).toFixed(2);
-  //parseFloat(Math.round(price * 100) / 100).toFixed(2)
   return numberPrice;
-}
+};
 
-
-;
-
-
-// $(".edit").click(function(event){
-//   event.preventDefault();
-
-//   // $.get( '/', function (data){
-//   //         console.log("this is the data from ajax: ", data)
-//   //     })
-
-
-// })
-
-
-
-
-
-
+//function to calculate the total price of items in the basket
 function calculateTotalPrice(basket){
-
  let total = 0;
-
-  for (foodId in basket){
-    var itemCost = (basket[foodId].quantity * basket[foodId].price)
-
-    total += itemCost
-  }
-
+ for (foodId in basket){
+   let itemCost = (basket[foodId].quantity * basket[foodId].price);
+   total += itemCost ;
+ }
  return total.toFixed(2);
 }
 
+//function to create div container with the details of food items (called whenever basket is rendered)
 function createItem(foodId){
  let $food_item = $("<div class='food_item'></div>");
 
@@ -76,19 +28,23 @@ function createItem(foodId){
  let quantity = `<div class="quantity"><b>Quantity:</b> ${basket[foodId].quantity}</div>`;
  let space = `<p></p>`
 
+<<<<<<< HEAD
  // $food_item.append(id);
 
 
+=======
+ $food_item.append(id);
+>>>>>>> finalEditMariam
  $food_item.append(name);
  $food_item.append(price);
  $food_item.append(quantity);
  $food_item.append(space);
 
 
- return $food_item
+ return $food_item;
 }
 
-
+// function to make a new basket appear everytime a change occurs by emptying div and then appending appropritate data.
 function renderBasket(basket){
   $("#food_cart").empty();
   $("#client_details").empty();
@@ -96,184 +52,111 @@ function renderBasket(basket){
   for(foodId in basket){
     const newFoodItem = createItem(foodId);
     $("#food_cart").append(newFoodItem);
-
-    let input=document.createElement('input')
-    input.type='hidden';
-    input.name='food_basket_item[]';
-    input.value=JSON.stringify(basket[foodId]);
-
+    let input=document.createElement('input');
+      input.type='hidden';
+      input.name='food_basket_item[]';
+      input.value=JSON.stringify(basket[foodId]);
     $("#client_details").append(input)
-
   }
 
   let total= calculateTotalPrice(basket);
+<<<<<<< HEAD
   let totalPriceStatementPrinted = `<span><b>Total Price: $${total}</b></span>`
   // let totalStatement = `<b>Grand Total: $${total}</b>`
 
   $("#food_cart").append(totalPriceStatementPrinted)
   // $("#food_cart").append(total)
   console.log("This is thte total being calculated")
+=======
+
+  $("#food_cart").append(total)
+  // console.log("This is thte total being calculated")
+>>>>>>> finalEditMariam
   $("#client_details").append(`<input type="hidden" name="food_basket_total" value="${total}">`)
-
-  // const newHiddenObject = addObject(basket);
-  // $("#client_details").append(newHiddenObject)
-
 }
 
-// function deleteFromBasket(id){
 
-// }
+//JQuery that initializes basket object when 'add' button is clicked
+$(".add_to_cart").on("click", function(){
 
-  $(".add_to_cart").on("click", function(){
+  let foodName = $(this).data('food-name');
+  let foodPrice = checkType($(this).data('food-price'));
+  let foodId = $(this).data('food-id')
 
-     let foodName = $(this).data('food-name');
-     let foodPrice = checkType($(this).data('food-price'));
-     let foodId = $(this).data('food-id')
-
-    if (foodId in basket){
-        basket[foodId].quantity += 1;
-    } else {
-        basket[foodId]= {
-          id: foodId,
-          name: foodName,
-          price: foodPrice,
-          quantity: 1
-        }
+  if (foodId in basket){
+    basket[foodId].quantity += 1;
+  } else {
+    basket[foodId]= {
+      id: foodId,
+      name: foodName,
+      price: foodPrice,
+      quantity: 1
     }
+  }
 
-    // var element = document.getElementById(food_cart);
-    console.log("this is the price price: ", foodPrice);
-      console.log("this is the price type", typeof foodPrice)
+  // console.log("this is the price price: ", foodPrice);
+  // console.log("this is the price type", typeof foodPrice)
     renderBasket(basket)
+});
 
 
-
-  });
-
-   $(".minus_from_cart").on("click", function(){
-
-     // let foodName = $(this).data('food-name');
-     // let foodPrice = $(this).data('food-price');
-     let foodId = $(this).data('food-id');
-
-
-    if( !basket[foodId]){
-      alert("please add to cart first")
+//JQuery that reduces quantity from basket object and renders new basket with updated quantity values
+$(".minus_from_cart").on("click", function(){
+  let foodId = $(this).data('food-id');
+  if( !basket[foodId]){
+    alert("please add to cart first")
+  } else {
+    if (basket[foodId].quantity === 1){
+      delete basket[foodId];
+      console.log("deleting item from basket")
     } else {
-      if (basket[foodId].quantity === 1){
-       delete basket[foodId];
-       console.log("deleting item from basket")
-     } else {
-       basket[foodId].quantity -= 1;
-       console.log("minus 1!")
-     }
+      basket[foodId].quantity -= 1;
+      console.log("minus 1!")
     }
-    console.log("this is the new basket when minus; ", basket);
-    renderBasket(basket)
+  }
+  // console.log("this is the new basket when minus; ", basket);
+  renderBasket(basket)
+});
 
+//JQuery that reintializes the basket object with relevant data when returning from different page to edit
+$(".page_container").hover(function(event){
+  // event.preventDefault();
+  // const test = "this is a test is it working?"
+  $('.item').each(function(){
+    let foodName = $(this).data('name');
+    let foodPrice = checkType($(this).data('price'));
+    let foodId = $(this).data('id');
+    let foodQuantity = $(this).data('quantity');
 
-  });
+     // console.log("this is the food price ", foodPrice)
+     // console.log("this is the price type", typeof foodPrice)dT
 
+      basket[foodId]= {
+        id: foodId,
+        name: foodName,
+        price: foodPrice,
+        quantity: foodQuantity
+      }
 
-
-
-   $(".page_container").hover(function(event){
-     event.preventDefault();
-    // const test = "this is a test is it working?"
-
-    $('.item').each(function(){
-     let foodName = $(this).data('name');
-     let foodPrice = checkType($(this).data('price'));
-     let foodId = $(this).data('id');
-     let foodQuantity = $(this).data('quantity');
-
-     console.log("this is the food price ", foodPrice)
-     console.log("this is the price type", typeof foodPrice)
-
-       basket[foodId]= {
-          id: foodId,
-          name: foodName,
-          price: foodPrice,
-          quantity: foodQuantity
-        }
-
-      })
+    })
 
     // console.log("this is the new basket from hover; ", basket)
-    renderBasket(basket)
-  })
-
-   //  const JSONbasket = JSON.stringify(basket)
-
-   //     $(() => {
-   //        $.ajax({
-   //          method: "POST",
-   //          url: "/",
-   //          data: JSONbasket,
-   //          success: function(data){
-   //            console.log("this is the data ", datas);
-   //            const newBasket = JSON.parse(response)
-   //            renderBasket(newBasket)
-   //          },
-   //          error: function(error){
-   //            console.log("this is not working,", error)
-   //          }
-   //        })
-   //      })
+  renderBasket(basket)
+})
 
 
+$("#food_submit_button").on("click", function(event){
+  // if (".food_cart p".text() === '0.00'){
+   event.preventDefault();
 
-
-    // $.ajax({
-    //   type: 'POST',
-    //   url:'/',
-    //   data: basket,
-    //   contentType: 'application/json',
-    //   dataType: 'json',
-    //   processdata: true,
-    //   success: function(response){
-    //     console.log("this is the resonse", response)
-    //     renderBasket(response)
-    //   },
-    //   error: function(error){
-    //     console.log("this is not working,", error)
-    //   }
-    // });
-
-    // console.log("this is the new basket when edit clicked: ", basket )
-
-    // alert("going back")
-
-    // $.ajax({
-    //   method: "POST",
-    //   url: "http:localhost:8080/",
-    //   data: basket,
-    //   dataType: 'json',
-    // }).done((data) => {
-    //   renderBasket(basket)
-    // });;
-
-  // var newBasket = renderBasket(basket)
-
-  // $('#food_cart').append(newBasket)
-
-
-
-
-   // console.log("checking to see whats in the basket?", basket)
-
-
-  // $("#order_heading").hide();
-  // $("#input_info_container").hide();
-  // $("#food_cart").hide();
-
-
-  // $(".order_button").on("click", function () {
-  //   $("#order_heading").show();
-  //   $("#input_info_container").show();
-  //   $("#food_cart").show();
-  // })
-
+  console.log("testing," , $(".food_cart p").val())
+    // let foodTotal = $("#foodTotal").data('total')
+    // console.log(foodTotal)
+    alert("Your cart is empty!")
+  // } else {
+  //   console.log("please work")
+  // }
+})
 
 
 

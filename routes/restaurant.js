@@ -20,11 +20,15 @@ module.exports = (knex) => {
   router.get("/summary", (req,res)=>{
 
 
+    if (!req.cookies.login){
+      res.send("must be logged in to view this page")
+    } else {
     //SQL query from order# details:
     //SELECT * FROM "ordersFoods"
     //JOIN foods ON "ordersFoods".foodid=foods.foodid
     //JOIN orders ON orders.orderid="ordersFoods".orderid
     //JOIN clients ON clients.clientid=orders.clientid;
+
     knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
       .from('ordersFoods')
       .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
@@ -57,12 +61,20 @@ module.exports = (knex) => {
         console.log("Error @query for foods:", err);
       });
 
-  });
+    }
+});
 
   //REDIRECT to the order summary page
   router.post("/", (req, res) => {
     try{
-      res.redirect("/restaurant/summary");
+      if( req.body.r_username === 'tester' && req.body.r_pwd === 'testpwd'){
+        // console.log("uname: ", req.body.r_username )
+        // console.log("pwd: ", req.body.r_pwd)
+        res.cookie("login", "tester")
+        res.redirect("/restaurant/summary")
+      } else {
+        res.send("Invalid Username or Password")
+      }
     } catch (err) {
       console.log("Error @Post restaurant login:", err);
     }
