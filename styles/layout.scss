@@ -100,7 +100,15 @@ p.lead{
   border: solid;
   border-color: yellow;
   display: flex;
+  /*justify-content: center;*/
+  flex-direction: column;
+}
+
+#food_cart_inner_container {
+  border: dotted;
+  display: flex;
   justify-content: center;
+  /*flex-direction: column;*/
 }
 
 #food_cart {
@@ -111,18 +119,19 @@ p.lead{
 }
 
 #input_info_overall_container {
-  display: flex;
-  justify-content: center;
+  /*display: flex;
+  justify-content: center;*/
   border: solid;
   border-color: green;
 }
 
 #input_info_container {
-  display: flex;
-  flex-direction: column;
+/*  display: flex;
+  flex-direction: column;*/
   /*justify-content: center;*/
  /* border: dotted;*/
-  width: 60%;
+  width: 100%;
+  padding: 50px;
 }
 
 #food_submit_button {

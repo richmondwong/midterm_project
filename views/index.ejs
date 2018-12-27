@@ -18,7 +18,7 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <!--   <link rel="stylesheet" href="/styles/test.css" type="text/css" /> -->
+  <!--   <link rel="stylesheet" href="/styles/foodPhoto.css" type="text/css" /> -->
 
 
   <!-- Bootstrap CSS -->
@@ -88,27 +88,27 @@
   <% for (foodItem of menu) {%>
 
  <!--  <div class="card" style="width: 18rem;">
-  <% var test = " " %>
-  <% if (foodItem.foodid === 7) {test = "images/fish.jpg"} else { %>
-  <% test = "images/pasta.jpg"} %> -->
+  <% var foodPhoto = " " %>
+  <% if (foodItem.foodid === 7) {foodPhoto = "images/fish.jpg"} else { %>
+  <% foodPhoto = "images/pasta.jpg"} %> -->
 
 <div class="card" style="width: 18rem;">
-  <% var test = " " %>
-  <% if (foodItem.foodid === 7) {test = "images/menu_pizza.jpg"} else if (foodItem.foodid === 8) { %>
-  <% test = "images/menu_salmon.jpg"} else if (
-  foodItem.foodid === 9) { %>
-  <% test = "images/menu_eggs_benedict.jpg"} else if (
-  foodItem.foodid === 10) { %>
-  <% test = "images/menu_waffles.jpg"} else if (
-  foodItem.foodid === 11) { %>
-  <% test = "images/menu_steak.jpg"} else { %>
-  <% test = "images/menu_poutine.jpg"} %>
+  <% var foodPhoto = " " %>
+  <% if (foodItem.name === "pepperoni pizza") {foodPhoto = "images/menu_pizza.jpg"} else if (foodItem.name === "salmon sashimi") { %>
+  <% foodPhoto = "images/menu_salmon.jpg"} else if (
+  foodItem.name === "eggs benedict") { %>
+  <% foodPhoto = "images/menu_eggs_benedict.jpg"} else if (
+  foodItem.name === "waffles") { %>
+  <% foodPhoto = "images/menu_waffles.jpg"} else if (
+  foodItem.name === "sirloin steak") { %>
+  <% foodPhoto = "images/menu_steak.jpg"} else { %>
+  <% foodPhoto = "images/menu_poutine.jpg"} %>
 
 
-  <img class="card-img-top" src="<%=test%>" alt="Card image cap">
+  <img class="card-img-top" src="<%=foodPhoto%>" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title"><%= foodItem.name %></h5>
-    <p class="card-text"><%= foodItem.price %> </p>
+    <h5 class="card-title"><b><%= foodItem.name %></b></h5>
+    <p class="card-text">$<%= foodItem.price %> </p>
     <button type="button" class="add_to_cart btn btn-success order_button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>">Add</button>
     <button type="button" class="minus_from_cart btn btn-danger order_button" data-food-id="<%= foodItem.foodid %>">Remove</button>
   </div>
@@ -136,6 +136,7 @@
   <div id="basket">
 
     <div id ="food_cart_container">
+      <div id="food_cart_inner_container">
       <div id="food_cart">
 
 
@@ -143,13 +144,13 @@
           <% if (cookie) { %>
             <% for (item of cartCookie.foodOrder) { %>
               <div class="food_item">
-                <div class="id"> <%= item.id %> </div>
-                <div class="name"> <%= item.name %> </div>
+              <div class="id"> <%= item.id %> </div>
+             < <div class="name"> <%= item.name %> </div>
                 <div class="price"> <%= item.price %> </div>
                 <div class="quantity"> <%= item.quantity %> </div>
               </div>
              <% } %>
-
+          <br><br>
           <p> <%= cartCookie.totalPrice %> </p>
           <% } %>
 
@@ -204,14 +205,14 @@
 </div>
 </div>
       <% } %>
-
+        </div>
       </div>
     </div>
 
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 

@@ -45,7 +45,7 @@ function createItem(foodId){
  let price = `<div class="price">${basket[foodId].price}</div>`;
  let quantity = `<div class="quantity">${basket[foodId].quantity}</div>`;
 
- $food_item.append(id);
+ // $food_item.append(id);
  $food_item.append(name);
  $food_item.append(price);
  $food_item.append(quantity);
@@ -135,13 +135,13 @@ function renderBasket(basket){
   });
 
 
-  $("#order_heading").hide();
-  $("#input_info_container").hide();
+  // $("#order_heading").hide();
+  // $("#input_info_container").hide();
 
-  $(".order_button").on("click", function () {
-    $("#order_heading").show();
-    $("#input_info_container").show();
-  })
+  // $(".order_button").on("click", function () {
+  //   $("#order_heading").show();
+  //   $("#input_info_container").show();
+  // })
 
 
 

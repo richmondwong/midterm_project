@@ -1,27 +1,101 @@
-/*html {
-  background-color: #FFCF9B;
-}*/
+$border-color: #ffc107;
+$display-method: inline-block;
+$font-weight: 400;
+$text-align: center;
+$white-space: nowrap;
+$vertical-align: middle;
+$user-select: none;
+$border: 1px solid transparent;
+$padding: .375rem .75rem;
+$font-size: 1rem;
+$line-height: 1.5;
+$border-radius: .25rem;
+$flex-direction: column;
+$justify-content: center;
+$background-color: #FFCF9B;
 
 #page_container {
   margin-top: 64px;
   display: flex;
-  justify-content: center;
-  /*border: solid;*/
-  /*background-color: #FFCF9B;*/
+  justify-content: $justify-content;
 }
 
 #basket_overall_container {
- /* border: dotted;
-  border-color: red;*/
+  display: flex;
+  flex-direction: $flex-direction;
+}
+
+#details_overall_container {
+  border: solid;
+  display: flex;
+  flex-direction: $flex-direction;
+  border-radius: 7px;
+  padding: 40px;
+  background-color: $background-color;
+}
+
+#details_container {
+  border: solid;
+  display: flex;
+  flex-direction: $flex-direction;
+  border-radius: 7px;
+  background-color: white;
+}
+
+#buttons_container {
+  display: flex;
+  justify-content: $justify-content;
+}
+
+#final_order_button {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+  display: $display-method;
+  font-weight: $font-weight;
+  text-align: $text-align;
+  white-space: $white-space;
+  vertical-align: $vertical-align;
+  user-select: $user-select;
+  border: $border;
+  padding: $padding;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+#edit_order_button {
+  margin-left: 4px;
+  margin-bottom: 5px;
+  color: #212529;
+  background-color: #ffc107;
+  border-color: $border-color;
+  display: $display-method;
+  font-weight: $font-weight;
+  text-align: $text-align;
+  white-space: $white-space;
+  vertical-align: $vertical-align;
+  user-select: $user-select;
+  border: $border;
+  padding: $padding;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+/*#page_container {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+
+}
+
+#basket_overall_container {
   display: flex;
   flex-direction: column;
- /* justify-content: center;*/
 }
 
 #basket {
-  /*border: dashed;*/
-  /*display: flex;
-  justify-content: center;*/
   }
 
 
@@ -37,7 +111,6 @@
 #details_container {
   border: solid;
   display: flex;
-  /*justify-content: center;*/
   flex-direction: column;
   border-radius: 7px;
   background-color: white;
@@ -89,3 +162,4 @@
   line-height: 1.5;
   border-radius: .25rem;
 }
+*/
