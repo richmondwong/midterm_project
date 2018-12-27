@@ -16,7 +16,7 @@ module.exports = (knex) => {
 
   });
 
-  //RENDER order summary page for restaurant
+  //RENDER order summary page for restaurant if login cookie present
   router.get("/summary", (req,res)=>{
 
 
@@ -29,7 +29,7 @@ module.exports = (knex) => {
     //JOIN orders ON orders.orderid="ordersFoods".orderid
     //JOIN clients ON clients.clientid=orders.clientid;
 
-    knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
+     knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
       .from('ordersFoods')
       .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
       .join('orders', 'ordersFoods.orderid', '=', 'orders.orderid')
@@ -64,12 +64,10 @@ module.exports = (knex) => {
     }
 });
 
-  //REDIRECT to the order summary page
+  //set login cookie and if username and password are correct redirects you to order/summary
   router.post("/", (req, res) => {
     try{
       if( req.body.r_username === 'tester' && req.body.r_pwd === 'testpwd'){
-        // console.log("uname: ", req.body.r_username )
-        // console.log("pwd: ", req.body.r_pwd)
         res.cookie("login", "tester")
         res.redirect("/restaurant/summary")
       } else {
@@ -83,19 +81,13 @@ module.exports = (knex) => {
   //Send SMS with prep time
   router.post("/summary", (req, res) => {
     try{
-
       let orderId = req.body.sms_orderid;
       let prepTime = req.body.prep_time
-
       let doneTime = moment().tz("America/Toronto").add(prepTime, 'minutes').format('hh:mm a');
-      console.log("current time:", moment().tz("America/Toronto").format('hh:mm a'));
-      console.log("complete at:", doneTime); //string type
-
       let orderUpdate = {
         completed: doneTime,
         prep_time: prepTime
       };
-
       //SQL query to get client info with the order.
       //SELECT name,phone_number,orderid FROM orders JOIN clients ON clients.clientid=orders.clientid
       knex('orders').select('name','phone_number','orderid')

@@ -28,7 +28,6 @@ function createItem(foodId){
  let quantity = `<div class="quantity"><b>Quantity:</b> ${basket[foodId].quantity}</div>`;
  let space = `<p></p>`
 
- // $food_item.append(id);
  $food_item.append(name);
  $food_item.append(price);
  $food_item.append(quantity);
@@ -82,8 +81,6 @@ $(".add_to_cart").on("click", function(){
     }
   }
 
-  // console.log("this is the price price: ", foodPrice);
-  // console.log("this is the price type", typeof foodPrice)
     renderBasket(basket);
 });
 
@@ -102,7 +99,7 @@ $(".minus_from_cart").on("click", function(){
       console.log("minus 1!")
     }
   }
-  // console.log("this is the new basket when minus; ", basket);
+
   renderBasket(basket)
 });
 
@@ -116,9 +113,6 @@ $(".page_container").hover(function(event){
     let foodId = $(this).data('id');
     let foodQuantity = $(this).data('quantity');
 
-     // console.log("this is the food price ", foodPrice)
-     // console.log("this is the price type", typeof foodPrice)dT
-
       basket[foodId]= {
         id: foodId,
         name: foodName,
@@ -128,19 +122,12 @@ $(".page_container").hover(function(event){
 
     })
 
-    // console.log("this is the new basket from hover; ", basket)
   renderBasket(basket)
 })
 
 
-// console.log("returned total", total)
-
 $("#food_submit_button").on("click", function(event){
-  // if (".food_cart p".text() === '0.00'){
-
-
-  // console.log("testing," , total)
-    let foodTotal = $("#totalPrice").data('price')
+  let foodTotal = $("#totalPrice").data('price')
 
   if (foodTotal === '0.00'){
     event.preventDefault();

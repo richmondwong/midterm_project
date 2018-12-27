@@ -14,10 +14,6 @@ module.exports = (knex) => {
 
     var cart = req.cookies.cart;
 
-
-    // res.render("order_confirm")
-
-
     if(!cart){
       res.redirect("/")
     } else {
@@ -72,10 +68,10 @@ module.exports = (knex) => {
 
 
     res.redirect("/order/confirm");
-   });
+});
 
-
-  router.post("/send", (req, res) => {
+ // post from /confirm page that sends cookie data into relvent DB tables and sends text to restaurant
+router.post("/send", (req, res) => {
 
     var cart = req.cookies.cart
 
@@ -145,7 +141,7 @@ module.exports = (knex) => {
 
   });
 
-  //HELPER function to get cart data from cookie and return cart data in an object w/ structure:
+//HELPER function to get cart data from cookie and return cart data in an object w/ structure:
   // { name         : 'Stan3',
   //   phone        : '4168763021',
   //   foodOrder    :
@@ -175,21 +171,17 @@ module.exports = (knex) => {
   router.get("/final", (req, res) => {
 
       try {
-        //console.log("grabbing cookie data");
         let cart = getCart(req);
-
         if(!cart){
           res.redirect("/")
         }
         else {
-          //console.log("Final Cart: ", cart);
           res.clearCookie('cart');
           res.render("order_final", cart);
         }
       } catch (err) {
         console.log("Error @Get final:", err);
       }
-
   });
 
   return router;

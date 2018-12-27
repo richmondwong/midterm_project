@@ -18,7 +18,7 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <!--   <link rel="stylesheet" href="/styles/foodPhoto.css" type="text/css" /> -->
+
 
 
   <!-- Bootstrap CSS -->
@@ -87,11 +87,6 @@
 <div class="food_object_container">
   <% for (foodItem of menu) {%>
 
- <!--  <div class="card" style="width: 18rem;">
-  <% var foodPhoto = " " %>
-  <% if (foodItem.foodid === 7) {foodPhoto = "images/fish.jpg"} else { %>
-  <% foodPhoto = "images/pasta.jpg"} %> -->
-
 <div class="card" style="width: 18rem;">
   <% var foodPhoto = " " %>
   <% if (foodItem.name === "pepperoni pizza") {foodPhoto = "images/menu_pizza.jpg"} else if (foodItem.name === "salmon sashimi") { %>
@@ -118,18 +113,6 @@
 </div>
 
 
-    <!-- <div class = "food_object">
-
-      <% for (foodItem of menu) {%>
-          <li> <%= foodItem.foodid %> </li>
-          <li> <%= foodItem.name %> </li>
-          <li> <%= foodItem.price %> </li>
-          <li><button class="add_to_cart" type="button" data-food-price="<%= foodItem.price %>" data-food-id="<%= foodItem.foodid %>" data-food-name="<%= foodItem.name %>"> PLUS </button></li>
-           <li><button class="minus_from_cart" type="button" data-food-id="<%= foodItem.foodid %>" > MINUS </button></li>
-       <% } %>
-    </div> -->
-
-
 <h2 id="order_heading" style="font-family:Permanent Marker; text-align: center; font-size: 60px;"> Your Order</h2>
 
 
@@ -141,46 +124,26 @@
 
 
               <% if (cookie) { %>
-            <% for (item of cartCookie.foodOrder) { %>
-             <!--  <div class="food_item">
-              <div class="id"> <%= item.id %> </div>
-             < <div class="name"> <%= item.name %> </div> -->
-             <div class=item data-id="<%= item.id %>" data-price="<%= item.price %>" data-quantity="<%= item.quantity %>" data-name="<%= item.name %>">
-                <div class="id"> <%= item.id %> </div>
-                <div class="name"> <%= item.name %> </div>
-                <div class="price"> <%= item.price %> </div>
-                <div class="quantity"> <%= item.quantity %> </div>
-              </div>
-             <% } %>
-          <br><br>
-          <p> <%= cartCookie.totalPrice %> </p>
+                <% for (item of cartCookie.foodOrder) { %>
 
-
-          <% } %>
-
-
-
+                 <div class=item data-id="<%= item.id %>" data-price="<%= item.price %>" data-quantity="<%= item.quantity %>" data-name="<%= item.name %>">
+                    <div class="id"> <%= item.id %> </div>
+                    <div class="name"> <%= item.name %> </div>
+                    <div class="price"> <%= item.price %> </div>
+                    <div class="quantity"> <%= item.quantity %> </div>
+                  </div>
+                 <% } %>
+              <br><br>
+              <p> <%= cartCookie.totalPrice %> </p>
+            <% } %>
 
        </div>
 
        <% if (cookie) { %>
 
-     <!--    <form action="/order/confirm" method="POST">
-          <input type="text" name="customer_name" value="<%=cartCookie.name%>"><br>
-          <input type="text" name="phone_number" value="<%=cartCookie.phone%>"><br>
-
-            <div id="client_details">
-               <input type="hidden" name="food_basket_names[0]" value="testing">
-               <input type="hidden" name="food_basket[1]" value="differnttest">
-
-            </div>
-            <input type = "submit" value="confirm order">
-        </form>
- -->
-
 
           <div id="input_info_overall_container">
-    <div id="input_info_container" class="shared_basket">
+          <div id="input_info_container" class="shared_basket">
 
   <form action="/order/confirm" method="POST">
 
@@ -228,9 +191,6 @@
       <input type="text" name="phone_number" class="form-control" required>
     </div>
 
-   <!--  <input type="text" name="phone_number" placeholder="Input phone #"><br> -->
-
-<!-- May not need the next 4 lines? -->
       <div id="client_details">
          <input type="hidden" name="food_basket_names[0]" value="testing">
          <input type="hidden" name="food_basket[1]" value="differnttest">
@@ -248,8 +208,6 @@
 
 </div>
 
-
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
