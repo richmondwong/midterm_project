@@ -1,4 +1,4 @@
-let basket = {}
+let basket = {};
 
 $(document).ready(function(){
 
@@ -51,6 +51,7 @@ function renderBasket(basket){
   }
 
   let total= calculateTotalPrice(basket);
+
   $("#food_cart").append(total)
   // console.log("This is thte total being calculated")
   $("#client_details").append(`<input type="hidden" name="food_basket_total" value="${total}">`)
@@ -110,7 +111,7 @@ $(".page_container").hover(function(event){
     let foodQuantity = $(this).data('quantity');
 
      // console.log("this is the food price ", foodPrice)
-     // console.log("this is the price type", typeof foodPrice)
+     // console.log("this is the price type", typeof foodPrice)dT
 
       basket[foodId]= {
         id: foodId,
@@ -125,6 +126,20 @@ $(".page_container").hover(function(event){
   renderBasket(basket)
 })
 
+
+$("#food_submit_button").on("click", function(event){
+  // if (".food_cart p".text() === '0.00'){
+   event.preventDefault();
+
+  console.log("testing," , $(".food_cart p").val())
+    // let foodTotal = $("#foodTotal").data('total')
+
+    // console.log(foodTotal)
+    alert("Your cart is empty!")
+  // } else {
+  //   console.log("please work")
+  // }
+})
   // $("#order_heading").hide();
   // $("#input_info_container").hide();
 
