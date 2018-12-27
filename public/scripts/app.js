@@ -109,7 +109,6 @@ function renderBasket(basket){
   let total= calculateTotalPrice(basket);
   let totalPriceStatementPrinted = `<span><b>Total Price: $${total}</b></span>`
   // let totalStatement = `<b>Grand Total: $${total}</b>`
-
   $("#food_cart").append(totalPriceStatementPrinted)
   // $("#food_cart").append(total)
   console.log("This is thte total being calculated")
