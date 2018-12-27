@@ -11,15 +11,19 @@ This app was created by Stanley Lau, Mariaj Majeed and Richmond Wong.
 ## Screenshots
 
 Upon loading of Heart Attack Grill - with rotating carousel of images.
+
 !["Screenshot of homepage"](https://github.com/richmondwong/midterm_project/blob/master/docs/homepage.png)
 
 Customers can pick from the menu and see informtion about their selected items and associated prices. They also leave their name and phone number in order to recieve a SMS from the restaurant with an estimated wait time for food pick up.
+
 !["Screenshot of menu page and purchase cart"](https://github.com/richmondwong/midterm_project/blob/master/docs/cart.png)
 
 Customers can go back to edit their shopping cart or confirm their order (upon which a SMS with their purchase is sent as a SMS to the restaurant).
+
 !["Screenshot of showing confirm or edit"](https://github.com/richmondwong/midterm_project/blob/master/docs/confirm_order.png)
 
 The restaurant has access to a running list of orders updated in real-time, and they can input an estimated time for meal preparation. Upon input, a SMS with the time estimate is sent to the customer.
+
 !["Screenshot of orders summary page for the restaurant"](https://github.com/richmondwong/midterm_project/blob/master/docs/restaurant_summary.png)
 
 ## Getting Started
