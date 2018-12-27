@@ -35,7 +35,6 @@ module.exports = (knex) => {
       .then( (orders) => {
 
         //create an Object {orderid: [{food data},{food data},...] }
-        console.log("orders:",orders);
         let groupedObjects = {};
         for(let i in orders) {
 
@@ -47,7 +46,13 @@ module.exports = (knex) => {
           }
         }
         console.log("temp:", groupedObjects);
-        res.render("restaurant_summary", {orders:groupedObjects});
+        //Create an array of each food object.
+        let orderArr = [];
+        for(let i in groupedObjects){
+          orderArr.push(groupedObjects[i]);
+        }
+        console.log("order array:", orderArr);
+        res.render("restaurant_summary", {orders: orderArr});
       })
       .catch((err) => {
         console.log("Error @query for foods:", err);
@@ -96,7 +101,6 @@ module.exports = (knex) => {
           }).then(message => console.log(message.sid)).done();
 
         })
-
 
 
       //Set the order as 'completed' so sms is sent

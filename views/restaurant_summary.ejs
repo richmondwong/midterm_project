@@ -34,19 +34,19 @@
 
   <div class="jumbo_container">
     <!-- interate thru orderid ojects -->
-    <% for (let orderid in orders) {%>
+    <% for (let i = orders.length-1; i >= 0; i--) {%>
 
 
       <div class="jumbo_individual_container">
         <div class="jumbotron">
           <div class="container">
-            <h1 class="display-4" style="font-family:Permanent Marker; font-size: 45px">Order #<%= orderid %></h1>
+            <h1 class="display-4" style="font-family:Permanent Marker; font-size: 45px">Order #<%= orders[i][0]['orderid'] %></h1>
             <p class="lead">
-              <p><b>Name:</b> <%= orders[orderid][0]['cname'] %></p>
-              <p><b>Phone Number:</b> <%= orders[orderid][0]['phone_number'] %></p>
+              <p><b>Name:</b> <%= orders[i][0]['cname'] %></p>
+              <p><b>Phone Number:</b> <%= orders[i][0]['phone_number'] %></p>
               <ol>
                 <!-- interate thru food items -->
-                <% orders[orderid].forEach( (food) => { %>
+                <% orders[i].forEach( (food) => { %>
 
                     <li>
                       <b>Item:</b> <%= food['name'] %>
@@ -61,12 +61,12 @@
             <form class="prep_insert hide" action="/restaurant/summary" method="POST">
               <input class="prep" type="text" name="prep_time" placeholder="Time to prepare">
 
-              <input class="sms_sent" type="hidden" name="sms_sent" value= <%= orders[orderid][0]['completed'] %> >
-              <input class="sms_orderid" type="hidden" name="sms_orderid" value= <%= orderid %> >
+              <input class="sms_sent" type="hidden" name="sms_sent" value= <%= orders[i][0]['completed'] %> >
+              <input class="sms_orderid" type="hidden" name="sms_orderid" value= <%= orders[i][0]['orderid'] %> >
               <button class="prep_btn">Send SMS</button>
             </form>
 
-            <p class="comp_time"> Order to be complete by: <%= orders[orderid][0]['completed'] %></p>
+            <p class="comp_time"> Order to be complete by: <%= orders[i][0]['completed'] %></p>
             <!-- <button type="button" class="btn btn-danger">Delete Order</button> -->
           </div>
         </div>
