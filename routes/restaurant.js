@@ -13,19 +13,18 @@ module.exports = (knex) => {
   //RENDER Restaurant login page
   router.get("/", (req,res)=>{
     res.render("restaurant");
-    //res.send("sent to restaurant 'login' page - ejs not ready yet.")
+
   });
 
   //RENDER order summary page for restaurant
   router.get("/summary", (req,res)=>{
-    //console.log("orderid results:", orderIdArr);
+
 
     //SQL query from order# details:
     //SELECT * FROM "ordersFoods"
     //JOIN foods ON "ordersFoods".foodid=foods.foodid
     //JOIN orders ON orders.orderid="ordersFoods".orderid
     //JOIN clients ON clients.clientid=orders.clientid;
-
     knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
       .from('ordersFoods')
       .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
@@ -45,13 +44,13 @@ module.exports = (knex) => {
             groupedObjects[orders[i]['orderid']] = [orders[i]];
           }
         }
-        console.log("temp:", groupedObjects);
+
         //Create an array of each food object.
         let orderArr = [];
         for(let i in groupedObjects){
           orderArr.push(groupedObjects[i]);
         }
-        console.log("order array:", orderArr);
+
         res.render("restaurant_summary", {orders: orderArr});
       })
       .catch((err) => {
@@ -60,6 +59,7 @@ module.exports = (knex) => {
 
   });
 
+  //REDIRECT to the order summary page
   router.post("/", (req, res) => {
     try{
       res.redirect("/restaurant/summary");
