@@ -20,44 +20,55 @@ module.exports = (knex) => {
   router.get("/summary", (req,res)=>{
     //console.log("orderid results:", orderIdArr);
 
+    if (!req.cookies.login){
+      res.send("must be logged in to view this page")
+    } else {
     //SQL query from order# details:
     //SELECT * FROM "ordersFoods"
     //JOIN foods ON "ordersFoods".foodid=foods.foodid
     //JOIN orders ON orders.orderid="ordersFoods".orderid
     //JOIN clients ON clients.clientid=orders.clientid;
 
-    knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
-      .from('ordersFoods')
-      .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
-      .join('orders', 'ordersFoods.orderid', '=', 'orders.orderid')
-      .join('clients', 'clients.clientid', '=', 'orders.clientid')
-      .orderBy('orders.orderid', 'desc')
-      .then( (orders) => {
+      knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
+        .from('ordersFoods')
+        .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
+        .join('orders', 'ordersFoods.orderid', '=', 'orders.orderid')
+        .join('clients', 'clients.clientid', '=', 'orders.clientid')
+        .orderBy('orders.orderid', 'desc')
+        .then( (orders) => {
 
-        //create an Object {orderid: [{food data},{food data},...] }
-        console.log("orders:",orders);
-        let groupedObjects = {};
-        for(let i in orders) {
+          //create an Object {orderid: [{food data},{food data},...] }
+          console.log("orders:",orders);
+          let groupedObjects = {};
+          for(let i in orders) {
 
-          if( groupedObjects[orders[i]['orderid']] ){
-            groupedObjects[orders[i]['orderid']].push(orders[i]);
+            if( groupedObjects[orders[i]['orderid']] ){
+              groupedObjects[orders[i]['orderid']].push(orders[i]);
+            }
+            else {
+              groupedObjects[orders[i]['orderid']] = [orders[i]];
+            }
           }
-          else {
-            groupedObjects[orders[i]['orderid']] = [orders[i]];
-          }
-        }
-        console.log("temp:", groupedObjects);
-        res.render("restaurant_summary", {orders:groupedObjects});
-      })
-      .catch((err) => {
-        console.log("Error @query for foods:", err);
-      });
+          console.log("temp:", groupedObjects);
+          res.render("restaurant_summary", {orders:groupedObjects});
+        })
+        .catch((err) => {
+          console.log("Error @query for foods:", err);
+        });
 
-  });
+    }
+});
 
   router.post("/", (req, res) => {
     try{
-      res.redirect("/restaurant/summary");
+      if( req.body.r_username === 'tester' && req.body.r_pwd === 'testpwd'){
+        // console.log("uname: ", req.body.r_username )
+        // console.log("pwd: ", req.body.r_pwd)
+        res.cookie("login", "tester")
+        res.redirect("/restaurant/summary")
+      } else {
+        res.send("Invalid Username or Password")
+      }
     } catch (err) {
       console.log("Error @Post restaurant login:", err);
     }
