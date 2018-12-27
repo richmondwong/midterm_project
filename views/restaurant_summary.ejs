@@ -59,7 +59,7 @@
               </ol>
             </p>
             <form class="prep_insert hide" action="/restaurant/summary" method="POST">
-              <input class="prep" type="text" name="prep_time" placeholder="Time to prepare">
+              <input class="prep" type="number" name="prep_time" placeholder="Minutes to prepare">
 
               <input class="sms_sent" type="hidden" name="sms_sent" value= <%= orders[i][0]['completed'] %> >
               <input class="sms_orderid" type="hidden" name="sms_orderid" value= <%= orders[i][0]['orderid'] %> >

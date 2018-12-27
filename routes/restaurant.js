@@ -103,7 +103,7 @@ module.exports = (knex) => {
         })
 
 
-      //Set the order as 'completed' so sms is sent
+      //Set the order as 'completed' - prep time and completion time saved in DB
       knex('orders').where('orderid', '=', orderId).update(orderUpdate)
         .then( () => {
           res.redirect("/restaurant/summary");
