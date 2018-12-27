@@ -16,16 +16,20 @@ module.exports = (knex) => {
 
   });
 
-  //RENDER order summary page for restaurant
+  //RENDER order summary page for restaurant if login cookie present
   router.get("/summary", (req,res)=>{
 
 
+    if (!req.cookies.login){
+      res.send("must be logged in to view this page")
+    } else {
     //SQL query from order# details:
     //SELECT * FROM "ordersFoods"
     //JOIN foods ON "ordersFoods".foodid=foods.foodid
     //JOIN orders ON orders.orderid="ordersFoods".orderid
     //JOIN clients ON clients.clientid=orders.clientid;
-    knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
+
+     knex.select('orders.orderid', 'clients.name as cname', 'clients.phone_number', 'foods.foodid', 'foods.name', 'food_quantity', 'completed')
       .from('ordersFoods')
       .join('foods', 'ordersFoods.foodid', '=', 'foods.foodid')
       .join('orders', 'ordersFoods.orderid', '=', 'orders.orderid')
@@ -57,12 +61,18 @@ module.exports = (knex) => {
         console.log("Error @query for foods:", err);
       });
 
-  });
+    }
+});
 
-  //REDIRECT to the order summary page
+  //set login cookie and if username and password are correct redirects you to order/summary
   router.post("/", (req, res) => {
     try{
-      res.redirect("/restaurant/summary");
+      if( req.body.r_username === 'tester' && req.body.r_pwd === 'testpwd'){
+        res.cookie("login", "tester")
+        res.redirect("/restaurant/summary")
+      } else {
+        res.send("Invalid Username or Password")
+      }
     } catch (err) {
       console.log("Error @Post restaurant login:", err);
     }
@@ -71,19 +81,13 @@ module.exports = (knex) => {
   //Send SMS with prep time
   router.post("/summary", (req, res) => {
     try{
-
       let orderId = req.body.sms_orderid;
       let prepTime = req.body.prep_time
-
       let doneTime = moment().tz("America/Toronto").add(prepTime, 'minutes').format('hh:mm a');
-      console.log("current time:", moment().tz("America/Toronto").format('hh:mm a'));
-      console.log("complete at:", doneTime); //string type
-
       let orderUpdate = {
         completed: doneTime,
         prep_time: prepTime
       };
-
       //SQL query to get client info with the order.
       //SELECT name,phone_number,orderid FROM orders JOIN clients ON clients.clientid=orders.clientid
       knex('orders').select('name','phone_number','orderid')

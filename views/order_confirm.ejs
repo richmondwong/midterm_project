@@ -13,11 +13,9 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Permanent+Marker|Playfair+Display:400,700" rel="stylesheet">
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
- <!--  <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <link rel="stylesheet" href="/styles/order_confirm.css" type="text/css" />
-  <!--   <link rel="stylesheet" href="/styles/test.css" type="text/css" /> -->
 
 
   <!-- Bootstrap CSS -->
@@ -44,8 +42,6 @@
 
       <ol>
 
-     <!--  <p> name: <%= name %>  </p>
-      <p> phone: <%= phone %>  </p> -->
      <div  id ="basket">
 
       <% for (item of foodOrder){ %>
@@ -55,20 +51,18 @@
          <b><p>Quantity:</b> <%= item.quantity %> <p>
          <b><p>Item Cost: </b> <%= item.price %> <p> </li>
 
-       <!--   <p> <%= item.id %> <p>
-         <p> <%= item.name %> <p>
-         <p> <%= item.quantity %> <p>
-         <p> <%= item.price %> <p> -->
-
 
         </div>
       <% } %>
 
       </ol>
-      <p><b><u>YOUR GRAND TOTAL: </b></u> <%= totalPrice %> </p>
+      <p><b><u>YOUR GRAND TOTAL:</b></u> $ <%= totalPrice %> </p>
     </div>
     </div>
-     <div id="buttons_container">
+
+
+    <div id="buttons_container">
+
     <form action="/order/send" method="POST">
       <input id="final_order_button" type="submit" value="Send Order">
     </form>
@@ -76,11 +70,8 @@
     <br>
 
 
- <!--   <a href="/" id="edit_order_button" style="text-decoration:none"> Edit Order </a> -->
-    <a href="/" id="edit_order_button" style="text-decoration:none"> Click here to edit order </a> <!-- set up a get AJAX request -->
-
+    <a href="/" id="edit_order_button" style="text-decoration:none"> Click here to edit order </a>
      </div>
-     <!--  <p> <%= totalPrice %> </p> -->
 
 
 
@@ -89,14 +80,11 @@
     </div>
 
 
-
-
     </div>
     </div>
     </div>
     </div>
 
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
