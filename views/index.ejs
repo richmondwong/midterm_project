@@ -169,7 +169,7 @@
 
        <% if (cookie) { %>
 
-    <!--     <form action="/order/confirm" method="POST">
+     <!--    <form action="/order/confirm" method="POST">
           <input type="text" name="customer_name" value="<%=cartCookie.name%>"><br>
           <input type="text" name="phone_number" value="<%=cartCookie.phone%>"><br>
 
@@ -179,13 +179,14 @@
 
             </div>
             <input type = "submit" value="confirm order">
-        </form> -->
+        </form>
+ -->
 
 
+          <div id="input_info_overall_container">
+    <div id="input_info_container" class="shared_basket">
 
-          <div id="input_info_overall_container_cookie">
-    <div id="input_info_container_cookie" class="shared_basket">
-  <form action="/order/confirm" method="POST" required>
+  <form action="/order/confirm" method="POST">
 
     <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -200,7 +201,11 @@
     </div>
       <input type="text" name="phone_number" class="form-control" value="<%=cartCookie.phone%>" required>
     </div>
- <input type = "submit" value="Confirm Order" id="food_submit_button" required>
+        <div id="client_details">
+               <input type="hidden" name="food_basket_names[0]" value="testing">
+               <input type="hidden" name="food_basket[1]" value="differnttest">
+            </div>
+ <input type = "submit" value="Confirm Order" id="food_submit_button">
   </form>
 </div>
 </div>

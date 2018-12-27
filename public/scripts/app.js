@@ -71,14 +71,19 @@ function createItem(foodId){
  let $food_item = $("<div class='food_item'></div>");
 
  let id = `<div class="id">${basket[foodId].id}</div>`;
- let name = `<div class="name">${basket[foodId].name}</div>`;
- let price = `<div class="price">${basket[foodId].price}</div>`;
- let quantity = `<div class="quantity">${basket[foodId].quantity}</div>`;
+ let name = `<div class="name"><b>Item:</b> ${basket[foodId].name}</div>`;
+ let price = `<div class="price"><b>Price:</b> $${basket[foodId].price}</div>`;
+ let quantity = `<div class="quantity"><b>Quantity:</b> ${basket[foodId].quantity}</div>`;
+ let space = `<p></p>`
 
  // $food_item.append(id);
+
+
  $food_item.append(name);
  $food_item.append(price);
  $food_item.append(quantity);
+ $food_item.append(space);
+
 
  return $food_item
 }
@@ -102,7 +107,11 @@ function renderBasket(basket){
   }
 
   let total= calculateTotalPrice(basket);
-  $("#food_cart").append(total)
+  let totalPriceStatementPrinted = `<span><b>Total Price: $${total}</b></span>`
+  // let totalStatement = `<b>Grand Total: $${total}</b>`
+
+  $("#food_cart").append(totalPriceStatementPrinted)
+  // $("#food_cart").append(total)
   console.log("This is thte total being calculated")
   $("#client_details").append(`<input type="hidden" name="food_basket_total" value="${total}">`)
 
@@ -254,13 +263,15 @@ function renderBasket(basket){
    // console.log("checking to see whats in the basket?", basket)
 
 
-  $("#order_heading").hide();
-  $("#input_info_container").hide();
+  // $("#order_heading").hide();
+  // $("#input_info_container").hide();
+  // $("#food_cart").hide();
 
-  $(".order_button").on("click", function () {
-    $("#order_heading").show();
-    $("#input_info_container").show();
-  })
+  // $(".order_button").on("click", function () {
+  //   $("#order_heading").show();
+  //   $("#input_info_container").show();
+  //   $("#food_cart").show();
+  // })
 
 
 

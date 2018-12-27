@@ -72,40 +72,49 @@ $border-radius: 7px;
   border-width: 10px!important;
 }
 
+#order_heading {
+  margin-bottom: 40px;
+}
+
 #basket {
-  border: $border;
-  border-color: red;
+  /*border: $border;
+  border-color: red;*/
   display: $display;
   flex-direction: $flex-direction;
 }
 
 #food_cart_container {
-  border: $border;
-  border-color: yellow;
+ /* border: $border;
+  border-color: yellow;*/
   display: $display;
   flex-direction: $flex-direction;
 }
 
 #food_cart_inner_container {
-  border: dotted;
+/*  border: dotted;*/
   display: $display;
   justify-content: $justify-content;
 }
 
 #food_cart {
-  border: $border;
-  border-color: blue;
+ /* border: $border;
+  border-color: blue;*/
   display: $display;
   flex-direction: $flex-direction;
 }
 
 #input_info_overall_container {
-  border: $border;
-  border-color: green;
+/*  border: $border;
+  border-color: green;*/
 }
 
-#input_info_container {
+/*#input_info_container {
   width: 100%;
+  padding: 50px;
+}*/
+
+.shared_basket {
+   width: 100%;
   padding: 50px;
 }
 
@@ -131,4 +140,5 @@ $border-radius: 7px;
   line-height: 1.5;
   border-radius: .25rem;
 }
+
 
