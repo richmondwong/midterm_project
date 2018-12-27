@@ -11,18 +11,48 @@
 
 // remember AJAX should be used for single page stuff (think tweeter) and is called in the server.js file
 
-var basket = {}
+let basket = {}
 
 $(document).ready(function(){
 // jquery to send to cart if add to car button
+
+//checkType converts value to string - double check to make sure this doesnt interfere with the db
 function checkType(price){
-  if (typeof price === 'string'){
-    var numberPrice = parseFloat(price).toFixed(2);
-  } else {
-    var numberPrice = price;
-  }
-  return numberPrice
+
+  // function roundN(num,n){
+  // return parseFloat(Math.round(price * Math.pow(10, n)) /Math.pow(10,n)).toFixed(n);
+  // }
+
+  var numberPrice = Number(price).toFixed(2);
+
+  // Number(Math.round(price +'e'+ 2) +'e-'+ 2).toFixed(2)
+
+  // parseFloat(Math.round(price * Math.pow(10, 2)) /Math.pow(10,2)).toFixed(2)
+
+
+  // parseFloat(price).toFixed(2);
+  //parseFloat(Math.round(price * 100) / 100).toFixed(2)
+  return numberPrice;
 }
+
+
+;
+
+
+// $(".edit").click(function(event){
+//   event.preventDefault();
+
+//   // $.get( '/', function (data){
+//   //         console.log("this is the data from ajax: ", data)
+//   //     })
+
+
+// })
+
+
+
+
+
 
 function calculateTotalPrice(basket){
 
@@ -102,8 +132,9 @@ function renderBasket(basket){
         }
     }
 
-    var element = document.getElementById(food_cart);
-    console.log("this is the new food_cart: ", element );
+    // var element = document.getElementById(food_cart);
+    console.log("this is the price price: ", foodPrice);
+      console.log("this is the price type", typeof foodPrice)
     renderBasket(basket)
 
 
@@ -128,15 +159,103 @@ function renderBasket(basket){
        console.log("minus 1!")
      }
     }
-    console.log(basket);
+    console.log("this is the new basket when minus; ", basket);
     renderBasket(basket)
 
 
   });
 
 
-  // $("#order_heading").hide();
-  // $("#input_info_container").hide();
+
+
+   $(".page_container").hover(function(event){
+     event.preventDefault();
+    // const test = "this is a test is it working?"
+
+    $('.item').each(function(){
+     let foodName = $(this).data('name');
+     let foodPrice = checkType($(this).data('price'));
+     let foodId = $(this).data('id');
+     let foodQuantity = $(this).data('quantity');
+
+     console.log("this is the food price ", foodPrice)
+     console.log("this is the price type", typeof foodPrice)
+
+       basket[foodId]= {
+          id: foodId,
+          name: foodName,
+          price: foodPrice,
+          quantity: foodQuantity
+        }
+
+      })
+
+    // console.log("this is the new basket from hover; ", basket)
+    renderBasket(basket)
+  })
+
+   //  const JSONbasket = JSON.stringify(basket)
+
+   //     $(() => {
+   //        $.ajax({
+   //          method: "POST",
+   //          url: "/",
+   //          data: JSONbasket,
+   //          success: function(data){
+   //            console.log("this is the data ", datas);
+   //            const newBasket = JSON.parse(response)
+   //            renderBasket(newBasket)
+   //          },
+   //          error: function(error){
+   //            console.log("this is not working,", error)
+   //          }
+   //        })
+   //      })
+
+
+
+
+    // $.ajax({
+    //   type: 'POST',
+    //   url:'/',
+    //   data: basket,
+    //   contentType: 'application/json',
+    //   dataType: 'json',
+    //   processdata: true,
+    //   success: function(response){
+    //     console.log("this is the resonse", response)
+    //     renderBasket(response)
+    //   },
+    //   error: function(error){
+    //     console.log("this is not working,", error)
+    //   }
+    // });
+
+    // console.log("this is the new basket when edit clicked: ", basket )
+
+    // alert("going back")
+
+    // $.ajax({
+    //   method: "POST",
+    //   url: "http:localhost:8080/",
+    //   data: basket,
+    //   dataType: 'json',
+    // }).done((data) => {
+    //   renderBasket(basket)
+    // });;
+
+  // var newBasket = renderBasket(basket)
+
+  // $('#food_cart').append(newBasket)
+
+
+
+
+   // console.log("checking to see whats in the basket?", basket)
+
+
+  $("#order_heading").hide();
+  $("#input_info_container").hide();
 
   // $(".order_button").on("click", function () {
   //   $("#order_heading").show();
