@@ -1,29 +1,35 @@
-# Node Skeleton
+# Midterm Project - Heart Attack Grill
 
-## Project Setup
+## Description
 
-1. Create your own empty repo on GitHub
-2. Clone this repository (do not fork)
-  - Suggestion: When cloning, specify a different folder name that is relevant to your project
-3. Remove the git remote: `git remote rm origin`
-4. Add a remote for your origin: `git remote add origin <your github repo URL>`
-5. Push to the new origin: `git push -u origin master`
-6. Verify that the skeleton code now shows up in your repo on GitHub
+Heart Attack Grill is a food ordering app that uses Express, JQuery, Bootstrap, CSS, Sass, Knex and PostgreSQL. 
+
+In a nutshell, hungry customers of this app can add different food items to their shopping cart, and upon purchase confirmation, the app will send a SMS to the restaurant with relevant information about the order (customer name, phone number, items bought, quantity and total price). Simultaneously, the restaurant can also view a list of pending orders within the app, from where they can input an estimated time for order pickup. When this is done, a second SMS is sent to the customer with information about the restaurant's estimated time for pick up. 
+
+## Screenshots
+
+A full list of URLs for a logged in user. Includes shortURL and longURL as well as functionality to edit and delete the URLs.
+!["Screenshot of urls page"](https://github.com/richmondwong/tinyapp/blob/master/docs/urls.png)
+
 
 ## Getting Started
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
-  - Check the migrations folder to see what gets created in the DB
-6. Run the seed: `npm run knex seed:run`
-  - Check the seeds file to see what gets seeded in the DB
-7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+- Install all dependencies (using 'npm install')
+- Run "knex migate:latest"
+- Run the development web server using the 'npm run local' command
 
 ## Dependencies
 
-- Node 5.10.x or above
-- NPM 3.8.x or above
+- body-parser
+- cookie-parser
+- dotenv
+- ejs
+- express
+- knex
+- knex-logger
+- moment
+- moment-timezone
+- morgan
+- node-sass-middleware
+- pg
+- twilio
