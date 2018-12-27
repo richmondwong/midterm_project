@@ -14,10 +14,6 @@ module.exports = (knex) => {
 
     var cart = req.cookies.cart;
 
-
-    // res.render("order_confirm")
-
-
     if(!cart){
       res.redirect("/")
     } else {
