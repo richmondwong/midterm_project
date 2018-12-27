@@ -28,13 +28,7 @@ function createItem(foodId){
  let quantity = `<div class="quantity"><b>Quantity:</b> ${basket[foodId].quantity}</div>`;
  let space = `<p></p>`
 
-<<<<<<< HEAD
  // $food_item.append(id);
-
-
-=======
- $food_item.append(id);
->>>>>>> finalEditMariam
  $food_item.append(name);
  $food_item.append(price);
  $food_item.append(quantity);
@@ -60,19 +54,13 @@ function renderBasket(basket){
   }
 
   let total= calculateTotalPrice(basket);
-<<<<<<< HEAD
-  let totalPriceStatementPrinted = `<span><b>Total Price: $${total}</b></span>`
-  // let totalStatement = `<b>Grand Total: $${total}</b>`
 
-  $("#food_cart").append(totalPriceStatementPrinted)
-  // $("#food_cart").append(total)
-  console.log("This is thte total being calculated")
-=======
+  let totalPriceStatementPrinted = `<span id="totalPrice" data-price="${total}"><b>Total Price: $${total}</b></span>`
 
-  $("#food_cart").append(total)
-  // console.log("This is thte total being calculated")
->>>>>>> finalEditMariam
-  $("#client_details").append(`<input type="hidden" name="food_basket_total" value="${total}">`)
+
+  $("#food_cart").append(totalPriceStatementPrinted);
+  $("#client_details").append(`<input type="hidden" name="food_basket_total" value="${total}">`);
+
 }
 
 
@@ -96,7 +84,7 @@ $(".add_to_cart").on("click", function(){
 
   // console.log("this is the price price: ", foodPrice);
   // console.log("this is the price type", typeof foodPrice)
-    renderBasket(basket)
+    renderBasket(basket);
 });
 
 
@@ -145,17 +133,19 @@ $(".page_container").hover(function(event){
 })
 
 
+// console.log("returned total", total)
+
 $("#food_submit_button").on("click", function(event){
   // if (".food_cart p".text() === '0.00'){
-   event.preventDefault();
 
-  console.log("testing," , $(".food_cart p").val())
-    // let foodTotal = $("#foodTotal").data('total')
-    // console.log(foodTotal)
+
+  // console.log("testing," , total)
+    let foodTotal = $("#totalPrice").data('price')
+
+  if (foodTotal === '0.00'){
+    event.preventDefault();
     alert("Your cart is empty!")
-  // } else {
-  //   console.log("please work")
-  // }
+  }
 })
 
 
