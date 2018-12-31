@@ -131,14 +131,6 @@ router.post("/send", (req, res) => {
     }
 
 
-
-    client.messages.create(
-      {
-        body: `\n\n Customer Name: ${req.cookies.cart.name} \n\nFood Order: \n${foodExtractor(req.cookies)} \nPhone: ${req.cookies.cart.phone} \n\nTotal Price: $${req.cookies.cart.totalPrice}`,
-        from: '+16475594746',
-        to: '+14167958562'
-      }).then(message => console.log(message.sid)).done();
-
   });
 
 //HELPER function to get cart data from cookie and return cart data in an object w/ structure:
