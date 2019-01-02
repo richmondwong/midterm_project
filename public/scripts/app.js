@@ -56,7 +56,6 @@ function renderBasket(basket){
 
   let totalPriceStatementPrinted = `<span id="totalPrice" data-price="${total}"><b>Total Price: $${total}</b></span>`
 
-
   $("#food_cart").append(totalPriceStatementPrinted);
   $("#client_details").append(`<input type="hidden" name="food_basket_total" value="${total}">`);
 
