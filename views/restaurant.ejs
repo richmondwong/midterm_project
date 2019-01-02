@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RESTAURANT NAME! LOGIN</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <title> Restaurant Login</title>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Permanent+Marker|Playfair+Display:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/restsum.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+
+  <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   <link rel="stylesheet" href="/styles/login.css" type="text/css" />
 </head>
+
 <body>
 
-  <h1>Restaurant Login</h1>
-  <form action="/restaurant" method="POST">
-    Username: <input type="text" name="r_username" placeholder="Username"><br>
-    Password: <input type="text" name="r_pwd"><br>
+  <div class="container">
+
+  <h1 style="font-family:Permanent Marker; text-align: center; font-size: 60px"> Restaurant Login </h1>
+    <form action="/restaurant" method="POST">
+     <div class="user"> Username: <input type="text" name="r_username" placeholder="Username"><br> </div>
+     <div class="pass"> Password: <input type="password" name="r_pwd" placeholder="Password"><br> </div>
     <button>LOGIN</button>
-  </form>
+    </form>
+
+  </div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

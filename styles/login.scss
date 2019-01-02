@@ -1,0 +1,41 @@
+body {
+  background-color: #FFCF9B;
+}
+
+.container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: solid;
+  border-radius: 10px;
+}
+
+form {
+  font-family:Permanent Marker;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.user{
+  padding: 10px;
+}
+
+.pass{
+  padding: 10px;
+}
+
+
+button{
+  color: #fff;
+  background-color: #28a745;
+  border-radius: .25rem;
+  border-color: #28a745;
+  align-self: center;
+}
