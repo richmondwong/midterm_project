@@ -1,4 +1,4 @@
-# Midterm Project - Heart Attack Grill
+# Heart Attack Grill
 
 ## Description
 
