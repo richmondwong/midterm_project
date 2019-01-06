@@ -6,7 +6,7 @@ Heart Attack Grill is a food ordering app that uses Express, JQuery, Bootstrap, 
 
 In a nutshell, hungry customers of this app can add different food items to their shopping cart, and upon purchase confirmation, the app will send a SMS to the restaurant with relevant information about the order (customer name, phone number, items bought, quantity and total price). Simultaneously, the restaurant can also view a list of pending orders within the app, from where they can input an estimated time for meal preparation. When this is done, the estimated time is sent via SMS to the customer. 
 
-This app was created by Stanley Lau, Mariaj Majeed and Richmond Wong. 
+This app was created by Stanley Lau, Mariam Majeed and Richmond Wong. 
 
 ## Screenshots
 
