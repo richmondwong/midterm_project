@@ -1,6 +1,7 @@
 
 !["Screenshot of demo"](https://github.com/richmondwong/midterm_project/blob/master/docs/heart_attack_one.gif)
-!["Screenshot of demo"](https://github.com/richmondwong/midterm_project/blob/master/docs/heart_attack_two.gif)
+!["Screenshot of demo"](https://github.com/richmondwong/midterm_project/blob/master/docs/heart_attack_640.gif)
+!["Screenshot of demo"](https://github.com/richmondwong/midterm_project/blob/master/docs/heart_attack_480.gif)
 !["Screenshot of demo"](https://github.com/richmondwong/midterm_project/blob/master/docs/heart_attack_three.gif)
 
 # Heart Attack Grill
